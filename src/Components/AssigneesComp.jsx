@@ -4,7 +4,7 @@
   
   export default function AssigneesComp() {
   
-      const [dataPriority, setDataPriority] = useState([]);
+      const [dataAssignees, setDataAssignees] = useState([]);
   
       const [error, setError] = useState(null);
       const [loading, setLoading] = useState(true);
@@ -13,9 +13,9 @@
     useEffect(() => {
       const fetchData = async () => {
         try {
-          const response = await axios.get('https://tms-api.providerscredentialing.com/api/Dashboard/GetTasksByPriority');
-          setDataPriority(response.data); 
-      console.log("DataPriority: ", response.data);
+          const response = await axios.get('https://tms-api.providerscredentialing.com/api/Dashboard/GetTasksByAssignee');
+          setDataAssignees(response.data); 
+      console.log("Data Assignees: ", response.data);
       
         } catch (error) {
           setError(error.message); 
@@ -92,7 +92,17 @@
         </tbody>
       </table>
 
-
+      <div>
+   {dataAssignees.data? (
+    <div>
+        {dataAssignees.data.map((item, index) => (
+          <li key={index}>{item.name}</li>
+        ))}
+          </div>
+   ): (
+    <p>No data found</p>
+  )}
+   </div>
       <div class="read-reviews">
         <div class="name">
           <h4>Mr. Jhone Doe</h4>

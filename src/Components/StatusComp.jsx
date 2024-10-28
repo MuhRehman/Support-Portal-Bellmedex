@@ -5,37 +5,16 @@
   export default function StatusComp() {
   
       const [dataStatus, setDataStatus] = useState([]);
-  
       const [error, setError] = useState(null);
       const [loading, setLoading] = useState(true);
   
-      const dataStatus1 = [
-        {
-         id: "e1",
-        title: "Toilet Paper",
-        amount: 94.12,
-        date: new Date(2020, 7, 14),
-        },
-        { id: "e2", title: "New TV", amount: 799.49, date: new Date(2021, 2, 12) },
-        { 
-        id: "e3",
-        title: "Car Insurance",
-        amount: 294.67,
-        date: new Date(2021, 2, 28),
-        },
-        {
-        id: "e4",
-        title: "New Desk (Wooden)",
-        amount: 450,
-        date: new Date(2021, 5, 12),
-         },
-         ]; 
+ 
 
 
     useEffect(() => {
       const fetchData = async () => {
         try {
-          const response = await axios.get('https://tms-api.providerscredentialing.com/api/Dashboard/GetTasksByStatus');
+          const response = await axios.get('http://192.168.1.16:3060/api/Dashboard/GetTasksByStatus');
           setDataStatus(response.data); 
       console.log("DataStatus: ", response.data);
       
@@ -51,79 +30,130 @@
   
   
     return (
-      <div class="md-card por">
-      <table class="table table-hover no-border">
-       
-        <tbody>
-          <tr class="read-reviews-btn">
-            <td>
-              <img class="table-user" src="https://avatar.iran.liara.run/public/girl" alt=""/> Pearl Chavez
-            </td>
+      <div class="md-card table-wrapper table-responsive m-0 p-0 ">
+      <div className='table-header'>
+           <h6 class="title">Status</h6>
+           </div>
 
-            <td><img src="image/starts.png" alt=""/></td>
-            <td align="right">
-              <button type="button" class="btn btn-sm btn-primary">Read Reviews</button>
+           <div className='m-4'>
+         <div className='d-flex'>
+           <div>
+            <div>Sept</div>
+              <div><b>2024</b></div>
+           </div>
 
-            </td>
-          </tr>
-        <tr>
-            <td>
-              <img class="table-user" src="https://avatar.iran.liara.run/public/girl"alt=""/> Pearl Chavez
-            </td>
+           <div className="col-md-6">
+           <span className='text-year'> Lorem ipsum dolor sit amet, consectetur adipisicing elit. </span>
+           </div>
+         </div>
+         <div  className='row mt-4'>
+          <div className='col-1'>
 
-            <td><img src="image/starts.png" alt=""/></td>
-            <td align="right">
-              <button type="button" class="btn btn-sm btn-primary">Read Reviews</button>
-
-            </td>
-          </tr>
-        <tr>
-            <td>
-              <img class="table-user" src="https://avatar.iran.liara.run/public/girl" alt=""/> Pearl Chavez
-            </td>
-
-            <td><img src="image/starts.png" alt=""/></td>
-            <td align="right">
-              <button type="button" class="btn btn-sm btn-primary">Read Reviews</button>
-
-            </td>
-          </tr>
-        <tr>
-            <td>
-              <img class="table-user" src="https://avatar.iran.liara.run/public/girl" alt=""/> Pearl Chavez
-            </td>
-
-            <td><img src="image/starts.png" alt=""/></td>
-            <td align="right">
-              <button type="button" class="btn btn-sm btn-primary">Read Reviews</button>
-
-            </td>
-          </tr>
-        <tr>
-            <td>
-              <img class="table-user" src="https://avatar.iran.liara.run/public/girl" alt=""/> Pearl Chavez
-            </td>
-
-            <td><img src="image/starts.png" alt=""/></td>
-            <td align="right">
-              <button type="button" class="btn btn-sm btn-primary">Read Reviews</button>
-
-            </td>
-          </tr>
-
-        </tbody>
-      </table>
-
-      <div>
-   {dataStatus.data? (
-    <div>
-        {dataStatus.data.map((item, index) => (
-          <li key={index}>{item.name}</li>
-        ))}
+         <i  class="fa fa-times close-reviewss "></i>
           </div>
+         <div class="progressBar col-4 mt-1" >
+          <div class="progressBar__fill " style={{width:"80%" , color:"red !"}}></div>
+         </div>
+         
+         <div className='ml-3'>OPEN 14</div>
+         </div>
+
+         <div  className='row mt-2'>
+          <div className='col-1'>
+
+         <i  class="fa fa-times close-reviewss "></i>
+          </div>
+         <div class="progressBar col-6 mt-1" >
+          <div class="progressBar__fill1 " style={{width:"90%"}}></div>
+         </div>
+         
+         <div className='ml-3'>IN PROGRESS 45</div>
+         </div>
+
+         <div  className='row mt-2'>
+          <div className='col-1'>
+
+         <i  class="fa fa-times close-reviewss "></i>
+          </div>
+         <div class="progressBar col-6 mt-1" >
+          <div class="progressBar__fill2 " style={{width:"100%"}}></div>
+         </div>
+         
+         <div className='ml-3'>COMPLETED 77</div>
+         </div>
+
+
+         <div  className='row mt-2'>
+          <div className='col-1'>
+
+         <i  class="fa fa-times close-reviewss "></i>
+          </div>
+         <div class="progressBar col-4 mt-1" >
+          <div class="progressBar__fill3 " style={{width:"60%"}}></div>
+         </div>
+         
+         <div className='ml-3'>OVER DUE 01</div>
+         </div>
+
+         <div  className='row mt-2'>
+          <div className='col-1'>
+
+         <i  class="fa fa-times close-reviewss "></i>
+          </div>
+         <div class="progressBar col-4 mt-1" >
+          <div class="progressBar__fill4 " style={{width:"80%"}}></div>
+         </div>
+         
+         <div className='ml-3'>CLOSE 41</div>
+         </div>
+
+         <div  className='row mt-2'>
+          <div className='col-1'>
+
+         <i  class="fa fa-times close-reviewss "></i>
+          </div>
+         <div class="progressBar col-6 mt-1" >
+          <div class="progressBar__fill5 " style={{width:"90%"}}></div>
+         </div>
+         
+         <div className='ml-3'>PENDING ON CLIENT 11</div>
+         </div>
+
+         <div  className='row mt-2'>
+          <div className='col-1'>
+
+         <i  class="fa fa-times close-reviewss "></i>
+          </div>
+         <div class="progressBar col-5 mt-1" >
+          <div class="progressBar__fill6 " style={{width:"60%"}}></div>
+         </div>
+         
+         <div className='ml-3'>OPEN 14</div>
+         </div>
+           </div>
+          {/* <table class="table table-hover no-border ">
+       
+        {dataStatus.data? (
+    <tbody>
+        {dataStatus.data.map((item, index) => (
+          <tr key={index} >
+
+             <td>{item.StatusID}</td>
+             <td>{item.Status}</td>
+             <td>{item.StatusCount}</td>
+          </tr>
+         
+        ))}
+         </tbody>
    ): (
     <p>No data found</p>
   )}
+
+        
+      </table> */}
+
+      <div>
+  
    </div>
 
       <div class="read-reviews">

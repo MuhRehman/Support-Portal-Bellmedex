@@ -12,7 +12,7 @@
     useEffect(() => {
       const fetchData = async () => {
         try {
-          const response = await axios.get('https://tms-api.providerscredentialing.com/api/Dashboard/GetTasksByTeams');
+          const response = await axios.get('http://192.168.1.16:3060/api/Dashboard/GetTasksByTeams');
           setDataTeams(response.data); 
       console.log("DataTeams: ", response.data);
       
@@ -28,66 +28,35 @@
   
   
     return (
-      <div class="md-card">
-      <table class="table table-hover no-border">
-      <thead>
-        <tr>
-          <th scope="col">Name</th>
-          <th scope="col">LTR</th>
-          <th scope="col">Location</th>
-          <th scope="col">Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            <img class="table-user" src="https://avatar.iran.liara.run/public/girl" alt=""/> Pearl Chavez
-          </td>
-          <td>100<sub>LTR</sub></td>
-          <td>Noida</td>
-          <td>
-            <button type="button" class="btn btn-sm btn-outline-primary">process</button>
-          </td>
-        </tr>
+  <div class="md-card table-wrapper table-wrapper-bar table-responsive m-0 p-0 ">
+      <div className='table-header'>
+           <h6 class="title">Teams</h6>
+           </div>
+          <table class="table table-hover no-border table-striped ">
+      
+        
 
-        <tr>
-          <td>
-            <img class="table-user" src="https://avatar.iran.liara.run/public/girl" alt=""/> 
-          Pearl Chavez
-        </td>
-          <td>100<sub>LTR</sub></td>
-          <td>Noida</td>
-          <td>
-            <button type="button" class="btn btn-sm btn-outline-primary">Process</button>
-          </td>
-        </tr>
-         
-        <tr>
-          <td>
-            <img class="table-user" src="https://avatar.iran.liara.run/public/girl" alt=""/> 
-          Pearl Chavez
-        </td>
-          <td>100<sub>LTR</sub></td>
-          <td>Noida</td>
-         <td>
-            <button type="button" class="btn btn-sm btn-outline-primary">process</button>
-          </td>
-        </tr>
-
-      </tbody>
+        {dataTeams.data? (
+          <tbody>
+              {dataTeams.data.map((item, index) => (
+                <tr key={index}>
+                  {/* <td> {item.TeamID}</td> */}
+                  <td> {item.TaskSubject}</td>
+                  <td> {item.TeamName}</td>
+                  <td> {item.TotalTasksPerTeam}</td>
+                </tr>
+                
+              ))}
+          </tbody>
+        ): (
+          <p>No data found</p>
+        )}
+      
     </table>
 
    
     <div>
-   {dataTeams.data? (
-    <div>
-        {dataTeams.data.map((item, index) => (
-          <li key={index}>{item.name}</li>
-        ))}
-          </div>
-   ): (
-    <p>No data found</p>
-  )}
+ 
    </div>
 
     </div>

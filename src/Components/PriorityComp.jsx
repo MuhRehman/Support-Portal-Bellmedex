@@ -12,7 +12,7 @@ export default function PriorityComp() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://tms-api.providerscredentialing.com/api/Dashboard/GetTasksByPriority');
+        const response = await axios.get('http://192.168.1.16:3060/api/Dashboard/GetTasksByPriority');
         setDataPriority(response.data); 
 		console.log("DataPriority: ", response.data);
 		
@@ -28,44 +28,35 @@ export default function PriorityComp() {
 
 
   return (
-    <div class="md-card">
-    <table class="table table-hover no-border">
-  <thead>
-    <tr>
-      <th scope="col">Name</th>
-      <th scope="col">LTR</th>
-      <th scope="col">Location</th>
-      <th scope="col">Status</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
-          <img class="table-user" src="https://avatar.iran.liara.run/public/boy" alt=""/> Pearl Chavez
-      </td>
-      <td>100<sub>LTR</sub></td>
-      <td>Noida</td>
-      <td>
-          <span class="badge badge-pill badge-secondary">Ongoing</span>
-
-      </td>
-    </tr>
-
-   <div>
+    <div class="md-card table-wrapper table-responsive m-0 p-0 ">
+<div className='table-header'>
+     <h6 class="title">Priority</h6>
+     </div>
+    <table class="table table-hover no-border ">
+   
    {dataPriority.data? (
-    <div>
+    <tbody>
         {dataPriority.data.map((item, index) => (
-          <li key={index}>{item.name}</li>
+        //    <li key={index}>{item.Priority}</li>
+          <tr key={index}> 
+        
+          
+           <td>{item.PriorityId}</td>
+          <td>{item.Priority}</td>
+          <td>{item.PriorityCount}</td> 
+         
+         </tr> 
+       
         ))}
-          </div>
+         </tbody>
    ): (
     <p>No data found</p>
   )}
-   </div>
+  
     
    
 
-  </tbody>
+  
 </table>
 </div>  
   )

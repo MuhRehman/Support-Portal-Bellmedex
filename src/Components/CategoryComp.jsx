@@ -13,7 +13,7 @@
     useEffect(() => {
       const fetchData = async () => {
         try {
-          const response = await axios.get('https://tms-api.providerscredentialing.com/api/Category/GetAllCategoriesCount');
+          const response = await axios.get('http://192.168.1.16:3060/api/Category/GetAllCategories');
           setDataCategory(response.data); 
       console.log("DataCategory: ", response.data);
       
@@ -29,78 +29,30 @@
   
   
     return (
-      <div class="md-card por">
-      <table class="table table-hover no-border">
-       
-        <tbody>
-          <tr class="read-reviews-btn">
-            <td>
-              <img class="table-user" src="https://avatar.iran.liara.run/public/girl" alt=""/> Pearl Chavez
-            </td>
-
-            <td><img src="image/starts.png" alt=""/></td>
-            <td align="right">
-              <button type="button" class="btn btn-sm btn-primary">Read Reviews</button>
-
-            </td>
-          </tr>
-        <tr>
-            <td>
-              <img class="table-user" src="https://avatar.iran.liara.run/public/girl"alt=""/> Pearl Chavez
-            </td>
-
-            <td><img src="image/starts.png" alt=""/></td>
-            <td align="right">
-              <button type="button" class="btn btn-sm btn-primary">Read Reviews</button>
-
-            </td>
-          </tr>
-        <tr>
-            <td>
-              <img class="table-user" src="https://avatar.iran.liara.run/public/girl" alt=""/> Pearl Chavez
-            </td>
-
-            <td><img src="image/starts.png" alt=""/></td>
-            <td align="right">
-              <button type="button" class="btn btn-sm btn-primary">Read Reviews</button>
-
-            </td>
-          </tr>
-        <tr>
-            <td>
-              <img class="table-user" src="https://avatar.iran.liara.run/public/girl" alt=""/> Pearl Chavez
-            </td>
-
-            <td><img src="image/starts.png" alt=""/></td>
-            <td align="right">
-              <button type="button" class="btn btn-sm btn-primary">Read Reviews</button>
-
-            </td>
-          </tr>
-        <tr>
-            <td>
-              <img class="table-user" src="https://avatar.iran.liara.run/public/girl" alt=""/> Pearl Chavez
-            </td>
-
-            <td><img src="image/starts.png" alt=""/></td>
-            <td align="right">
-              <button type="button" class="btn btn-sm btn-primary">Read Reviews</button>
-
-            </td>
-          </tr>
-
-        </tbody>
-      </table>
-      <div>
-   {dataCategory.data? (
-    <div>
+      <div   class="md-card table-wrapper table-wrapper-bar table-responsive m-0 p-0 ">
+      <div className='table-header'>
+           <h6 class="title">Category</h6>
+           </div>
+           <div >
+      <table class="table table-hover no-border table-striped">
+      {dataCategory.data? (
+       <tbody className='tbody-wrapper' >
         {dataCategory.data.map((item, index) => (
-          <li key={index}>{item.name}</li>
+          <tr key={index}>
+          {/* <td>{item.Id}</td> */}
+          <td>{item.Name}</td>
+          <td>{item.name}</td>
+          </tr>
         ))}
-          </div>
-   ): (
-    <p>No data found</p>
-    )}
+          </tbody>
+        ): (
+          <p>No data found</p>
+          )}
+              
+      </table>
+      </div>
+      <div>
+
    </div>
 
       <div class="read-reviews">

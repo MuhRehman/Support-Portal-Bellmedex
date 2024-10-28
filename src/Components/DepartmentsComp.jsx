@@ -13,7 +13,7 @@
     useEffect(() => {
       const fetchData = async () => {
         try {
-          const response = await axios.get('https://tms-api.providerscredentialing.com/api/Dashboard/GetTasksByDepartment');
+          const response = await axios.get('http://192.168.1.16:3060/api/Dashboard/GetTasksByDepartment');
           setDataDepartments(response.data); 
       console.log("Data Departments: ", response.data);
       
@@ -29,78 +29,34 @@
   
   
     return (
-      <div class="md-card por">
-      <table class="table table-hover no-border">
-       
-        <tbody>
-          <tr class="read-reviews-btn">
-            <td>
-              <img class="table-user" src="https://avatar.iran.liara.run/public/girl" alt=""/> Pearl Chavez
-            </td>
-
-            <td><img src="image/starts.png" alt=""/></td>
-            <td align="right">
-              <button type="button" class="btn btn-sm btn-primary">Read Reviews</button>
-
-            </td>
-          </tr>
-        <tr>
-            <td>
-              <img class="table-user" src="https://avatar.iran.liara.run/public/girl"alt=""/> Pearl Chavez
-            </td>
-
-            <td><img src="image/starts.png" alt=""/></td>
-            <td align="right">
-              <button type="button" class="btn btn-sm btn-primary">Read Reviews</button>
-
-            </td>
-          </tr>
-        <tr>
-            <td>
-              <img class="table-user" src="https://avatar.iran.liara.run/public/girl" alt=""/> Pearl Chavez
-            </td>
-
-            <td><img src="image/starts.png" alt=""/></td>
-            <td align="right">
-              <button type="button" class="btn btn-sm btn-primary">Read Reviews</button>
-
-            </td>
-          </tr>
-        <tr>
-            <td>
-              <img class="table-user" src="https://avatar.iran.liara.run/public/girl" alt=""/> Pearl Chavez
-            </td>
-
-            <td><img src="image/starts.png" alt=""/></td>
-            <td align="right">
-              <button type="button" class="btn btn-sm btn-primary">Read Reviews</button>
-
-            </td>
-          </tr>
-        <tr>
-            <td>
-              <img class="table-user" src="https://avatar.iran.liara.run/public/girl" alt=""/> Pearl Chavez
-            </td>
-
-            <td><img src="image/starts.png" alt=""/></td>
-            <td align="right">
-              <button type="button" class="btn btn-sm btn-primary">Read Reviews</button>
-
-            </td>
-          </tr>
-
-        </tbody>
-      </table>
-      <div>
-   {dataDepartments.data? (
-    <div>
+      <div class="md-card table-wrapper table-wrapper-bar table-responsive m-0 p-0 ">
+      <div className='table-header'>
+           <h6 class="title">Departments</h6>
+           </div>
+          <table class="table table-hover no-border table-striped">
+      {dataDepartments.data? (
+    <tbody className='tbody-wrapper' >
         {dataDepartments.data.map((item, index) => (
-          <li key={index}>{item.name}</li>
+        
+          <tr key={index} >
+        
+
+          {/* <td>{item.DepartmentId}</td> */}
+          <td>{item.DepartmentName}</td>
+          <td>{item.TaskSubject}</td>
+          <td>{item.TotalTasksPerDepartment}</td>
+         
+        </tr>
+          
         ))}
-          </div>
+          </tbody>
    ): (
     <p>No data found</p>
   )}
+        
+      </table>
+      <div>
+ 
    </div>
 
       <div class="read-reviews">

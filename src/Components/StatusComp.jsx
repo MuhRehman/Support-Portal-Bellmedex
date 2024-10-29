@@ -1,7 +1,19 @@
 
   import React, { useState, useEffect } from 'react'
   import axios from 'axios'; 
-  
+  import closedIcon from './../assets/closed-Icon.svg';
+  import completedIcon from './../assets/completed-Icon.svg';
+  import inprogressIcon from './../assets/inprogress-Icon.svg';
+  import openIcon from './../assets/open-Icon.svg';
+  import overDueIcon from './../assets/overDue-Icon.svg';
+  // import pendingIcon from './../assets/pending-Icon.svg';
+  // import pendingOnClientIcon from './../assets/pendingOnClient-Icon.svg';
+
+
+
+
+
+
   export default function StatusComp() {
   
       const [dataStatus, setDataStatus] = useState([]);
@@ -34,12 +46,26 @@
       <div className='table-header'>
            <h6 class="title">Status</h6>
            </div>
+           {/* {dataStatus.data? (
+         <div>
+        {dataStatus.data.map((item, index) => (
+          <div key={index} style={{visibility:"hidden"}} >
 
-           <div className='m-4'>
+             <td>{item.StatusID}</td>
+             <td>{item.Status}</td>
+             <td>{item.StatusCount}</td>
+          </div>
+         
+        ))}         </div>
+      ): (
+       <p>No data found</p>
+     )} */}
+   
+           <div className='m-3 progress-bar-wrapper'>
          <div className='d-flex'>
            <div>
             <div>Sept</div>
-              <div><b>2024</b></div>
+              <div><b className='year-text'>2024</b></div>
            </div>
 
            <div className="col-md-6">
@@ -49,7 +75,7 @@
          <div  className='row mt-4'>
           <div className='col-1'>
 
-         <i  class="fa fa-times close-reviewss "></i>
+         <img src={openIcon} alt="" />
           </div>
          <div class="progressBar col-4 mt-1" >
           <div class="progressBar__fill " style={{width:"80%" , color:"red !"}}></div>
@@ -60,8 +86,8 @@
 
          <div  className='row mt-2'>
           <div className='col-1'>
-
-         <i  class="fa fa-times close-reviewss "></i>
+          
+          <img src={inprogressIcon} alt="" />
           </div>
          <div class="progressBar col-6 mt-1" >
           <div class="progressBar__fill1 " style={{width:"90%"}}></div>
@@ -73,7 +99,7 @@
          <div  className='row mt-2'>
           <div className='col-1'>
 
-         <i  class="fa fa-times close-reviewss "></i>
+          <img src={completedIcon} alt="" />
           </div>
          <div class="progressBar col-6 mt-1" >
           <div class="progressBar__fill2 " style={{width:"100%"}}></div>
@@ -86,7 +112,7 @@
          <div  className='row mt-2'>
           <div className='col-1'>
 
-         <i  class="fa fa-times close-reviewss "></i>
+          <img src={overDueIcon} alt="" />
           </div>
          <div class="progressBar col-4 mt-1" >
           <div class="progressBar__fill3 " style={{width:"60%"}}></div>
@@ -98,7 +124,7 @@
          <div  className='row mt-2'>
           <div className='col-1'>
 
-         <i  class="fa fa-times close-reviewss "></i>
+          <img src={openIcon} alt="" />
           </div>
          <div class="progressBar col-4 mt-1" >
           <div class="progressBar__fill4 " style={{width:"80%"}}></div>
@@ -110,7 +136,7 @@
          <div  className='row mt-2'>
           <div className='col-1'>
 
-         <i  class="fa fa-times close-reviewss "></i>
+          <img src={inprogressIcon}  alt="" />
           </div>
          <div class="progressBar col-6 mt-1" >
           <div class="progressBar__fill5 " style={{width:"90%"}}></div>
@@ -122,7 +148,7 @@
          <div  className='row mt-2'>
           <div className='col-1'>
 
-         <i  class="fa fa-times close-reviewss "></i>
+          <img src={completedIcon} alt="" />
           </div>
          <div class="progressBar col-5 mt-1" >
           <div class="progressBar__fill6 " style={{width:"60%"}}></div>
@@ -131,26 +157,12 @@
          <div className='ml-3 text-bolder'>OPEN 14</div>
          </div>
            </div>
-          {/* <table class="table table-hover no-border ">
+      
        
-        {dataStatus.data? (
-    <tbody>
-        {dataStatus.data.map((item, index) => (
-          <tr key={index} >
-
-             <td>{item.StatusID}</td>
-             <td>{item.Status}</td>
-             <td>{item.StatusCount}</td>
-          </tr>
-         
-        ))}
-         </tbody>
-   ): (
-    <p>No data found</p>
-  )}
+    
 
         
-      </table> */}
+
 
       <div>
   

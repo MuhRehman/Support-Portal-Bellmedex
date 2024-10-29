@@ -162,23 +162,24 @@ overflow-y: auto;
 }
 .card-wrapper {
     border-radius: 13px;
-    background-color: #044d9b;
+    /* background-color: #044d9b; */
+    background-color: #1D65C2;
     
     color: white;
 }
 .card-wrapper-Practices {
     border-radius: 13px;
-    background-color: #007bff;
+    background-color: #4C92E5;
     color: white;
 }
 .card-wrapper-Count {
     border-radius: 13px;
-    background-color: #4cf3ff;
+    background-color: #58D6CE;
     color: white;
 }
 .card-wrapper-Tickets {
     border-radius: 13px;
-    background-color: #4c005f;
+    background-color: #6E558D;
     color: white;
 }
 .table-wrapper {
@@ -434,12 +435,104 @@ sub {
       width: 0;
     }
   }
-.text-bolder {
-    font-weight: 500;
+  .chart-container {
+    width: 20vw;
+    height: 40vh;
+    background-color: #ffffff;
+    border-radius: 10px;
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+    /* padding: 20px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 45px;
+  }
+/* .text-high {
+ color: #ff6060;
+ font-weight: 500;
+} */
+.text-normal {
+  font-weight: 500;
+color: #c0c0c0;
 }
- .progress-wrapper {
-/* display: flex; */
- }
+.text-low {
+  font-weight: 500;
+ color: #e2e2e2;
+}
+.text-high {
+  font-weight: 500;
+  color: rgb(231, 86, 19);
+}
+
+.text-high {
+  position: relative;
+  text-align: center;
+}
+.text-urgent {
+  position: relative;
+  text-align: center;
+  color: #0734ff;
+  font-weight: 500;
+}
+.year-text {
+  font-weight: 600;
+  font-size: 22px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.text-high::before {
+  content: '.';
+  color: rgb(255, 54, 39);
+  font-size: 100px;
+  line-height: 3px;
+  /* display: block; */
+  /* width: 28%; */
+  margin: 0 auto;
+}
+.text-low::before {
+  content: '.';
+  color: rgb(223, 223, 223);
+  font-size: 100px;
+  line-height: 3px;
+
+  margin: 0 auto;
+}
+.text-normal::before {
+  content: '.';
+  color: rgb(185, 185, 185);
+  font-size: 100px;
+  line-height: 3px;
+  margin: 0 auto;
+}
+.text-urgent::before {
+  content: '.';
+  color: rgb(72, 84, 255);
+  font-size: 100px;
+  line-height: 3px;
+  margin: 0 auto;
+}
+  canvas {
+      display: block;
+  }
+
+  .text-bolder {
+      font-weight: 500;
+  }
+.dashboard-icon{    width: 50px;
+  border: 2px solid white;
+  border-radius: 50%;
+  padding: 2px;
+}
+.dashboard-heading {
+  font-size: 42px;
+}
+  .progress-wrapper {
+  /* display: flex; */
+  }
+.progress-bar-wrapper {
+  margin-top: 22px;
+  padding-top: 42px;
+  padding-bottom: 42px;
+}
  .progress-bar1 {
     border: 1px solid #ffffff;
     width: 100%;

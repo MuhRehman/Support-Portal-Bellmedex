@@ -8,6 +8,11 @@ import DepartmentsComp from '../Components/DepartmentsComp';
 import TeamsComp from '../Components/TeamsComp';
 
 
+import   Practices from './../assets/dashboard/Practices.svg';
+import   Teams from './../assets/dashboard/Teams.svg';
+import   Tickets from './../assets/dashboard/Tickets.svg';
+import   Department from './../assets/dashboard/Departments121.svg';
+
 export default function Dashboard() {
 
 
@@ -106,20 +111,20 @@ export default function Dashboard() {
 			<section class="spacethis">
 				<div className='border-yellow-4001 shadow bottom '>
 
-				<h3 class="title">Dashboard Summary</h3>
+				<h4 class="title">Dashboard Summary</h4>
 				</div>
 				<div class="row ">
           <div class="col-xl-3 col-lg-6">
           
 		  <div class="card card-wrapper mb-3 ">
             <div class="card-body d-flex justify-content-between">
-              <div class="w-50 text-center">
+              <div class="w-75s text-center">
              
-                <div class="h3"> <i class="fa fa-user-o fa-4x" aria-hidden="true"></i> Practices </div>
+                <div class="h3"> <img src={Practices} className='dashboard-icon' alt="" /> Practices </div>
               </div>
 			  {data ? (
 				<div className='mr-4 '>
-					<h3 class="">{data.totalPracticesCount} </h3>
+					<h3 className='dashboard-heading'>{data.totalPracticesCount} </h3>
 				</div>
 			) : (	
 				<p>No data found</p>
@@ -132,15 +137,15 @@ export default function Dashboard() {
           <div class="col-xl-3 col-lg-6 shadow-bottom-left">
             <div class="card card-wrapper-Practices mb-3">
               <div class="card-body d-flex justify-content-between">
-			  <div class="w-75 text-center">
+			  <div class="w-75s text-center">
              
-			 <div class="h3"> <i class="fa fa-user-o fa-4x" aria-hidden="true"></i> Department </div>
+			 <div class="h3"> <img src={ Department} className='dashboard-icon' alt="" /> Department </div>
 		   </div>
               
                 
 				{data ? (
 				<div className='mr-2'>
-					<h3 class="">{data.totalDepartmentsCount}</h3>
+					<h3 className='dashboard-heading'>{data.totalDepartmentsCount}</h3>
 				</div>
 			) : (	
 				<p>No data found</p>
@@ -152,15 +157,15 @@ export default function Dashboard() {
           <div class="col-xl-3 col-lg-6 shadow-bottom-left">
 		  <div class="card card-wrapper-Count mb-3">
               <div class="card-body d-flex justify-content-between">
-			  <div class="w-50 text-center">
+			  <div class="w-75s	 text-center">
              
-			 <div class="h3"> <i class="fa fa-user-o fa-4x" aria-hidden="true"></i> Teams </div>
+			 <div class="h3"> <img src={Teams} className='dashboard-icon' alt="" /> Teams </div>
 		   </div>
               
                 
 				{data ? (
 				<div className='mr-2'>
-					<h3 class="">{data.totalTasksCount}</h3>
+					<h3 className='dashboard-heading'>{data.totalTeamsCount}</h3>
 				</div>
 			) : (	
 				<p>No data found</p>
@@ -188,15 +193,15 @@ export default function Dashboard() {
     
 		  <div class="card card-wrapper-Tickets mb-3">
               <div class="card-body d-flex justify-content-between">
-			  <div class="w-50 text-center">
+			  <div class="w-75s text-center">
              
-			 <div class="h3"> <i class="fa fa-user-o fa-4x" aria-hidden="true"></i> Tickets </div>
+			 <div class="h3"> <img src={ Tickets} className='dashboard-icon' alt="" /> Tickets </div>
 		   </div>
               
                 
 				{data ? (
 				<div className='mr-2'>
-					<h3 class="">{data.totalTasksCount}</h3>
+					<h3 className='dashboard-heading'>{data.totalTasksCount}</h3>
 				</div>
 			) : (	
 				<p>No data found</p>

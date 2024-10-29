@@ -26,6 +26,11 @@ export default function Dashboard() {
         setData(response.data); 
 		console.log(response.data);
 
+
+        const responseLogin = await axios.get('https://tms-api.providerscredentialing.com/api/Users/Login');
+        setData(responseLogin.data); 
+		console.log(responseLogin.data);
+
 		
       } catch (error) {
         setError(error.message); 

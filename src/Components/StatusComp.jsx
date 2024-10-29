@@ -55,7 +55,7 @@
           <div class="progressBar__fill " style={{width:"80%" , color:"red !"}}></div>
          </div>
          
-         <div className='ml-3'>OPEN 14</div>
+         <div className='ml-3 text-bolder'>OPEN 14</div>
          </div>
 
          <div  className='row mt-2'>
@@ -67,7 +67,7 @@
           <div class="progressBar__fill1 " style={{width:"90%"}}></div>
          </div>
          
-         <div className='ml-3'>IN PROGRESS 45</div>
+         <div className='ml-3 text-bolder'>IN PROGRESS 45</div>
          </div>
 
          <div  className='row mt-2'>
@@ -79,7 +79,7 @@
           <div class="progressBar__fill2 " style={{width:"100%"}}></div>
          </div>
          
-         <div className='ml-3'>COMPLETED 77</div>
+         <div className='ml-3 text-bolder'>COMPLETED 77</div>
          </div>
 
 
@@ -92,7 +92,7 @@
           <div class="progressBar__fill3 " style={{width:"60%"}}></div>
          </div>
          
-         <div className='ml-3'>OVER DUE 01</div>
+         <div className='ml-3 text-bolder'>OVER DUE 01</div>
          </div>
 
          <div  className='row mt-2'>
@@ -104,7 +104,7 @@
           <div class="progressBar__fill4 " style={{width:"80%"}}></div>
          </div>
          
-         <div className='ml-3'>CLOSE 41</div>
+         <div className='ml-3 text-bolder'>CLOSE 41</div>
          </div>
 
          <div  className='row mt-2'>
@@ -116,7 +116,7 @@
           <div class="progressBar__fill5 " style={{width:"90%"}}></div>
          </div>
          
-         <div className='ml-3'>PENDING ON CLIENT 11</div>
+         <div className='ml-3 text-bolder'>PENDING ON CLIENT 11</div>
          </div>
 
          <div  className='row mt-2'>
@@ -128,7 +128,7 @@
           <div class="progressBar__fill6 " style={{width:"60%"}}></div>
          </div>
          
-         <div className='ml-3'>OPEN 14</div>
+         <div className='ml-3 text-bolder'>OPEN 14</div>
          </div>
            </div>
           {/* <table class="table table-hover no-border ">

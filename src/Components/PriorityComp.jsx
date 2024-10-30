@@ -58,7 +58,7 @@ console.log(priorityCounts);
      <div className='table-header'>
      <h6 class="title">Priority</h6>
      </div>
-     <div className="d-flex">
+     <div className="d-flex priority-container">
       <div className="col-6">
       {/* <table class="table table-hover no-border "> */}
       <div className=''>

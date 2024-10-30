@@ -43,8 +43,8 @@
 
           {/* <td>{item.DepartmentId}</td> */}
           <td>{item.DepartmentName}</td>
-          <td>{item.TaskSubject}</td>
-          <td>{item.TotalTasksPerDepartment}</td>
+          {/* <td>{item.TaskSubject}</td> */}
+          <td style={{  textAlign: "right"}}>{item.TotalTasksPerDepartment}</td>
          
         </tr>
           

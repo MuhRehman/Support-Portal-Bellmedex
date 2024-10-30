@@ -1,4 +1,21 @@
+@font-face {
+  font-family: MulishBold;
+  src: url(../src/assets/fonts/Mulish-Bold.ttf);
+}
+@font-face {
+  font-family: MulishExtraBold;
+  src: url(../src/assets/fonts/Mulish-ExtraBold.ttf);
+}
+@font-face {
+  font-family: MulishLight;
+  src: url(../src/assets/fonts/Mulish-Light.ttf);
+}
+@font-face {
+  font-family: MulishRegular;
+  src: url(../src/assets/fonts/Mulish-Regular.ttf);
+}
 
+ 
 :root {
 	--theme-color: #3111e9;
 	--dark-gray: #585858;
@@ -28,7 +45,11 @@ body {
 	object-fit: cover;
 
 }
-
+.text-year {
+  font-family: MulishLight;
+  font-weight: 300;
+  font-size: 15px;
+}
 .card-block {
     -webkit-box-flex: 1;
     -webkit-flex: 1 1 auto;
@@ -82,6 +103,8 @@ body {
 }
 .card-wrapper-bot {
     /* width: 44px; */
+    font-family: MulishBold;
+    font-weight: 500;
 }
 .box-img {
     width: 32px !important;
@@ -96,27 +119,22 @@ body {
     font-weight: 500;
 
 }
-.table-wrapper-bar::-webkit-scrollbar
-{
-	
-	/* background-color: #3b07c9; */
-    /* border-radius: 10px; */
-}
 
-.table-wrapper-bar::-webkit-scrollbar {
+
+  tbody::-webkit-scrollbar {
     width: 5px;
   }
-  .table-wrapper-bar::-webkit-scrollbar-thumb {
+  tbody::-webkit-scrollbar-thumb {
     background: #1e1be7;
     width: 2px !important; 
   }
   
-  .table-wrapper-bar::-webkit-scrollbar-track {
+  tbody::-webkit-scrollbar-track {
     background: #ddd;
     width: 2px;
   }
   
-  .table-wrapper-bar::-webkit-scrollbar-button {
+  tbody::-webkit-scrollbar-button {
     background: #ffffff;
     height: 15px;
     border-radius: 50%;
@@ -125,22 +143,14 @@ body {
   
   
   
-.table-wrapper-bar::-webkit-scrollbar-track
+  tbody::-webkit-scrollbar-track
 {
 	-webkit-box-shadow: inset 0 0 6px rgba(85, 44, 199, 0.3);
 	border-radius: 10px;
 	background-color: #F5F5F5;
 }
-.table-wrapper-bar {
-overflow-y: auto;
-    height: 310px;
-}
 
 .shadow {
-   
-
-
- 
     justify-content: center;
     padding-left: 12px;
   }
@@ -191,7 +201,10 @@ overflow-y: auto;
 }
 .table-wrapper .table-header .title {
     /* margin: 12px; */
-    padding: 17px 12px;
+    padding: 17px 12px;  
+    font-size: 20px;
+    font-family: MulishBold;
+    font-weight: 600;
 }
 .table-wrapper .table-header {
     background-color: #dbdbdb;
@@ -301,6 +314,7 @@ overflow-y: auto;
 .title {
 	padding-bottom: 15px;
 	color: var(--dark-gray);
+  font-size: 24px;
 }
 .spacethis {
 	padding-top: 30px;
@@ -312,6 +326,9 @@ sub {
 
 .table.no-border td {
 	border:none;
+  font-family: MulishRegular;
+  font-weight: 400;
+  font-size: 16px;
 }
 
 .table.no-border th {
@@ -453,11 +470,11 @@ sub {
 } */
 .text-normal {
   font-weight: 500;
-color: #c0c0c0;
+color: #f39c12;
 }
 .text-low {
   font-weight: 500;
- color: #e2e2e2;
+ color: #856404;
 }
 .text-high {
   font-weight: 500;
@@ -472,7 +489,8 @@ color: #c0c0c0;
   position: relative;
   text-align: center;
   color: #0734ff;
-  font-weight: 500;
+  font-family: MulishBold;
+  font-weight: 600;
 }
 .year-text {
   font-weight: 600;
@@ -490,7 +508,7 @@ color: #c0c0c0;
 }
 .text-low::before {
   content: '.';
-  color: rgb(223, 223, 223);
+  color: #856404;
   font-size: 100px;
   line-height: 3px;
 
@@ -498,7 +516,8 @@ color: #c0c0c0;
 }
 .text-normal::before {
   content: '.';
-  color: rgb(185, 185, 185);
+  color: rgb(255, 223, 39);
+  color: #f39c12;
   font-size: 100px;
   line-height: 3px;
   margin: 0 auto;
@@ -520,18 +539,40 @@ color: #c0c0c0;
 .dashboard-icon{    width: 50px;
   border: 2px solid white;
   border-radius: 50%;
-  padding: 2px;
+  padding: 6px;
 }
 .dashboard-heading {
   font-size: 42px;
 }
+th, td {
+  /* padding: 5px 14px !important; */
+
+}
+tbody {
+  display:block;
+  max-height:130px !important;
+  overflow-y:auto;
+}
+thead, tbody tr {
+display:table;
+width:100%;
+table-layout:fixed;
+/* padding: 12px 12px !important; */
+/* margin: -12px -11px !important; */
+/* border: 2px solid red; */
+font-size: 18px;
+}
+.table td, .table th { padding: 2px 12px; }
+thead {
+width: calc( 100% - 1em )
+} 
   .progress-wrapper {
   /* display: flex; */
   }
 .progress-bar-wrapper {
-  margin-top: 22px;
+  /* margin-top: 22px;
   padding-top: 42px;
-  padding-bottom: 42px;
+  padding-bottom: 42px; */
 }
  .progress-bar1 {
     border: 1px solid #ffffff;
@@ -798,3 +839,159 @@ display: inline;
 
 /* ===========profile */
 /* ===========profile */
+
+.status-container {
+  height: 450px;
+  margin-left: 5%;
+  /* border: 2px solid red; */
+}
+
+.priority-container {
+  /* border: 2px solid red; */
+  height: 450px;
+}
+/* ====== Progress Bar ===== */
+
+
+.bar{
+  margin: 10px 0;
+}
+.bar:first-child{
+  margin: 0;
+}
+.info{
+  margin-bottom: 5px;
+  font-size: 17px;
+
+}
+
+.progress-bars{
+  position: relative;
+  height: 10px ;
+  width: 100%;
+ 
+  outline: none;
+  border-radius: 5px;
+ 
+}
+.progress-bars span::after{
+  content:url('/src/assets/closed-Icon.svg'); /* with class ModalCarrot ??*/
+ 
+}
+.progress-bars span{
+  width: 80%;
+  border-radius: 5px;
+  height: 100%;
+  background-color: rgb(35, 250, 89);
+  position: absolute;
+  animation: expandWidth 1000ms ease-in-out 1;
+}
+.progress-bars span::before{
+  position: absolute;
+  content: "";
+  height: 0;
+  width: 0;
+  right: 0;
+  top: -10px;
+  border: 7px solid  transparent;
+  border-bottom-width: 0;
+  border-right-width: 0;
+
+
+}
+.progress-bars span::after{
+  content: "OPEN 14";
+  color: rgb(0, 0, 0);
+  position: absolute;
+  border-radius: 3px;
+  right: -90px;
+  top: -7px;
+  /* background-color: #000; */
+  padding: 1px 5px;
+  font-weight: 500  ;
+}
+
+
+.progress-bars.css span::after{
+  content: "IN PROGRESS 45"; 
+  right: -150px;
+  font-family: MulishBold;
+  font-weight: 500;
+}
+.progress-bars.javascript span::after{
+  content: "OPEN 1411"; 
+  font-family: MulishBold;
+  font-weight: 500;
+}
+.progress-bars.open span::after{
+  content: "COMPLETED 77"; 
+  right: -145px;
+  font-family: MulishBold;
+  font-weight: 500;
+}
+.progress-bars.jquerys span::after{
+  content: "OVER DUE 01"; 
+  right: -125px;
+  font-family: MulishBold;
+  font-weight: 500;
+}
+.progress-bars.bootstrap  span::after{
+  content: "CLOSE 41";
+  font-family: MulishBold;
+  font-weight: 500; 
+}
+.progress-bars.done  span::after{
+  content: "PENDING ON CLIENT 11";
+  right: -200px; 
+  font-family: MulishBold;
+  font-weight: 500;
+}
+.progress-bars.close1  span::after{
+  content: "OPEN 143"; 
+}
+.progress-bars.css span {
+      width: 80%;
+      animation: expandWidth 1000ms ease-in-out 1;
+}
+      
+.progress-bars.javascript span{
+          width: 40%;
+          animation: expandWidth 1000ms ease-in-out 1;
+ } 
+.progress-bars.javascript span::after{
+              content: "40%";
+}
+.progress-bars.jquery span::after{
+    content: "50%";
+}
+
+.dashboard-title {
+  font-family: MulishExtraBold;
+  font-weight: 500;
+}
+.Dashboard-heading {
+  
+  font-family: MulishExtraBold;
+  font-weight: 500;
+  font-size: 33px;
+}
+.progress-bar.bootstrap span::after{
+    content: "50%";
+    
+}
+
+
+.progress-bars.jquery span
+, .progress-bars.bootstrap span {
+    width: 50%;
+    animation: expandWidth 1000ms ease-in-out 1;
+}
+
+@keyframes expandWidth {
+  0% {
+    width: 0;
+  }
+}
+
+
+/* ====== Progress Bar ===== */

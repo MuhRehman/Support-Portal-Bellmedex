@@ -41,9 +41,9 @@
               {dataTeams.data.map((item, index) => (
                 <tr key={index}>
                   {/* <td> {item.TeamID}</td> */}
-                  <td> {item.TaskSubject}</td>
+                  {/* <td> {item.TaskSubject}</td> */}
                   <td> {item.TeamName}</td>
-                  <td> {item.TotalTasksPerTeam}</td>
+                  <td style={{  textAlign: "right"}}> {item.TotalTasksPerTeam}</td>
                 </tr>
                 
               ))}

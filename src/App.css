@@ -470,11 +470,11 @@ sub {
 } */
 .text-normal {
   font-weight: 500;
-color: #f39c12;
+color: rgb(125, 202, 238);
 }
 .text-low {
   font-weight: 500;
- color: #856404;
+ color: rgb(60, 179, 113);
 }
 .text-high {
   font-weight: 500;
@@ -508,7 +508,7 @@ color: #f39c12;
 }
 .text-low::before {
   content: '.';
-  color: #856404;
+  color: rgb(60, 179, 113);
   font-size: 100px;
   line-height: 3px;
 
@@ -516,8 +516,8 @@ color: #f39c12;
 }
 .text-normal::before {
   content: '.';
-  color: rgb(255, 223, 39);
-  color: #f39c12;
+  color: rgb(125, 202, 238);
+  /* color: #f39c12; */
   font-size: 100px;
   line-height: 3px;
   margin: 0 auto;

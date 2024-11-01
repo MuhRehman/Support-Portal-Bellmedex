@@ -44,9 +44,9 @@ console.log(priorityCounts);
             data: priorityCounts,
             backgroundColor: [
               'rgba(39, 46, 245, 0.8)',
-              'rgba(96, 96, 102, 0.8)',
+              'rgb(125, 202, 238)',
               'rgba(174, 61, 25, 0.8)',
-              'rgba(203, 196, 194, 0.8)',
+              'rgb(60, 179, 113)',
             ],
             borderWidth: 1,
           },

@@ -2,7 +2,7 @@
   import React, { useState, useEffect } from 'react'
   import axios from 'axios'; 
   
-  export default function TeamsComp() {
+  export default function TeamsComp({ onSendId }) {
   
       const [dataTeams, setDataTeams] = useState([]);
       const [error, setError] = useState(null);
@@ -25,7 +25,13 @@
       
       fetchData();
     }, []);  
-  
+
+    const id = 123; // Example ID to send to the parent
+
+    // Function to trigger sending the ID to the parent
+    const sendIdToParent = () => {
+      onSendId(id); // Call the parent callback function with the ID
+    };
   
     return (
   <div class="md-card table-wrapper table-wrapper-bar table-responsive m-0 p-0 ">
@@ -39,7 +45,7 @@
         {dataTeams.data? (
           <tbody>
               {dataTeams.data.map((item, index) => (
-                <tr key={index}>
+                <tr   onClick={sendIdToParent}   key={index}>
                   {/* <td> {item.TeamID}</td> */}
                   {/* <td> {item.TaskSubject}</td> */}
                   <td> {item.TeamName}</td>

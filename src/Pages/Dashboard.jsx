@@ -21,7 +21,7 @@ export default function Dashboard() {
  const [dataPriority, setDataPriority] = useState([]);
  const [error, setError] = useState(null);
  const [loading, setLoading] = useState(true);
-
+ const [childId, setChildId] = useState(null);
 
 
   useEffect(() => {
@@ -47,7 +47,11 @@ export default function Dashboard() {
     fetchData();
   }, []); 
 
-
+// Callback function to handle id from child
+const handleChildId = (id) => {
+    console.log("Received ID from child:", id);
+    setChildId(id); // Optionally, update state or perform actions
+  };
      // Render data, loading, and error states
 //   if (loading) return <p>Loading...</p>;
 //   if (error) return <p>Error: {error}</p>; 
@@ -262,7 +266,7 @@ export default function Dashboard() {
 
 					<div class="col-md-4">
 					
-						<TeamsComp></TeamsComp>
+						<TeamsComp onSendId={handleChildId}></TeamsComp>
 						
 					</div>
 				</div>

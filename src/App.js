@@ -21,7 +21,10 @@ function App() {
   return (
     <div className="App">
 
-      <div>
+{/* -----------navbar */}
+
+<BrowserRouter>
+
       <nav class="bg-white-custom border-gray-200 dark:bg-gray-900">
   <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
     <div class="relative flex h-16 items-center justify-between">
@@ -46,18 +49,46 @@ function App() {
         </div>
         <div class="hidden sm:ml-6 sm:block">
           <div class="flex space-x-4">
+          {/* <li class="nav-item text-black-300 " >
+        <Link to="/Dashboard"              >
+          Dashboard 
+        </Link>
+        </li>
 
+        <li class="nav-item"     onClick={() => handleClick("/settings")}
+        className={activeLink === "/settings" ? "active-link" : "inactive-link"} >
+        <Link to="/Settings"    >
+          Settings
+        </Link>
+        </li>
+        <li class="nav-item"         onClick={() => handleClick("/tickets")}
+        className={activeLink === "/tickets" ? "active-link" : "inactive-link"} >
+        <Link    >
+          Tickets
+        </Link>
+        </li> */}
             <a href="#"  onClick={() => handleClick("/")}
         className={activeLink === "/" ? "active-link" : "inactive-link"} 
-        class="rounded-md  text-black-300  px-3 py-2 text-sm font-medium text-white" >Dashboard</a>
+        class="rounded-md  text-black-300  px-3 py-2 text-sm font-medium text-white" >
+        <Link to="/Dashboard" > Dashboard</Link> 
+          
+          </a>
 
             <a href="#" onClick={() => handleClick("/settings")}
         className={activeLink === "/settings" ? "active-link" : "inactive-link"}
-         class="rounded-md px-3 py-2 text-sm font-medium text-black-300  hover:bg-gray-700 hover:text-white" aria-current="page">    Tickets</a>
+         class="rounded-md px-3 py-2 text-sm font-medium text-black-300  hover:bg-gray-700 hover:text-white" aria-current="page">
+              
+              <Link to="/tickets"  > Tickets </Link>
+              </a>
             <a href="#"  onClick={() => handleClick("/tickets")}
         className={activeLink === "/tickets" ? "active-link" : "inactive-link"} 
         
-        class="rounded-md px-3 py-2 text-sm font-medium text-black-300 hover:bg-gray-700 hover:text-white">   Settings</a>
+        class="rounded-md px-3 py-2 text-sm font-medium text-black-300 hover:bg-gray-700 hover:text-white"> 
+         
+          <Link to="/settings"  >
+            Settings    
+          </Link>
+          </a>
           </div>
         </div>
       </div>
@@ -95,7 +126,6 @@ function App() {
   {/* <!-- Mobile menu, show/hide based on menu state. --> */}
   <div class="sm:hidden" id="mobile-menu">
     <div class="space-y-1 px-2 pb-3 pt-2">
-      {/* <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" --> */}
       <a href="#" class="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white" aria-current="page">Dashboard</a>
       <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Team</a>
       <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Projects</a>
@@ -103,76 +133,22 @@ function App() {
     </div>
   </div>
 </nav>
-
-      </div>
-       <BrowserRouter>
-    <header>
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#"><img src="../logo.png" alt="" /></a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-     
-    <ul class="navbar-nav mr-auto">
-      
-        <li class="nav-item text-black-300 " >
-        <Link to="/dashboard"              >
-          Dashboard 
-        </Link>
-        </li>
-
-        <li class="nav-item "     onClick={() => handleClick("/settings")}
-        className={activeLink === "/settings" ? "active-link" : "inactive-link"} >
-        <Link to="/Settings"    >
-          Settings
-        </Link>
-        </li>
-        <li class="nav-item"         onClick={() => handleClick("/tickets")}
-        className={activeLink === "/tickets" ? "active-link" : "inactive-link"} >
-        <Link to="/tickets"    >
-          Tickets
-        </Link>
-        </li>
-      
-   
-
-    </ul>
-
-    <form class="form-inline my-2 my-lg-0">
-	 <div class="d-flex">
-			        <a class="nav-link user-prfile" href="#">
-			        	<img src="https://avatar.iran.liara.run/public" alt=""/>
-			        </a>
-					<div className='mt-3 font-weight-bold'>Avater</div>
-
-					<a class="nav-link bell-icon-badge" href="#">
-			        	<i class="fa fa-bell-o" aria-hidden="true"></i>
-			        	<span class="bell-badge">10</span>
-			        </a>
-	 </div>
-    </form>
-
-  </div>
-</nav>
-	
-
-
-
-</header>
-     <div>
+<div>
     
      
-      <Routes>
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/settings" element={<Settings/>} />
-        <Route path="/tickets" element={<Tickets />} />
-      </Routes>
-  
-     </div>
-     </BrowserRouter>
+    <Routes>
+      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/settings" element={<Settings/>} />
+      <Route path="/tickets" element={<Tickets />} />
+    </Routes>
+
+   </div>
+   </BrowserRouter>
+ 
+{/* -----------navbar */}
+
+
+
     </div>
   );
 }

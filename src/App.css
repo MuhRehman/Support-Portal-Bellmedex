@@ -111,11 +111,12 @@ body {
     display: flex;
     font-family: MulishBold;
     font-weight: 500;
-   
 }
+
 .box-img {
     width: 32px !important;
 }
+
 .span-card {
     border: 0.5px solid rgb(226, 226, 226);
     /* width: 15%; */
@@ -138,7 +139,9 @@ body {
   color: red;
   font-weight: bold;
 }
-
+.nav-item {
+  color: #00C91F !important;
+}
   tbody::-webkit-scrollbar {
     width: 5px;
   }

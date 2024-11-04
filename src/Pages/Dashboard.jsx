@@ -13,6 +13,7 @@ import   Teams from './../assets/dashboard/Teams.svg';
 import   Tickets from './../assets/dashboard/Tickets.svg';
 import   Department from './../assets/dashboard/Departments121.svg';
 
+
 export default function Dashboard() {
 
 
@@ -60,58 +61,16 @@ const handleChildId = (id) => {
   return (
     <>
     
-  	
-<header>
+ 
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#"><img src="../logo.png" alt="" /></a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link ml-3" href="#">Dashboard <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link ml-3" href="#"> Tickets</a>
-      </li>
-    
-      <li class="nav-item">
-        <a class="nav-link ml-3">Settings		</a>
-      </li>
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-	<div class="d-flex">
-			        <a class="nav-link user-prfile" href="#">
-			        	<img src="https://avatar.iran.liara.run/public" alt=""/>
-			        </a>
-					<div className='mt-3 font-weight-bold'>Avater</div>
-
-					<a class="nav-link bell-icon-badge" href="#">
-			        	<i class="fa fa-bell-o" aria-hidden="true"></i>
-			        	<span class="bell-badge">10</span>
-			        </a>
-							    </div>
-     
-   
-    </form>
-  </div>
-</nav>
-	
-
-
-
-</header>
 
 <div class="container-fluid">
 	<div class="row">
 	
 
 		<main class="col-md-12" id="main">
-
-			
+	
+	
 			<section class="spacethis">
 				<div className='border-yellow-4001 shadow bottom '>
 
@@ -124,7 +83,7 @@ const handleChildId = (id) => {
             <div class="card-body d-flex justify-content-between">
               <div class="w-75s text-center">
              
-                <div class="h3 dashboard-title"> <img src={Practices} className='dashboard-icon' alt="" /> Practices </div>
+                <div class="h3 dashboard-title"> <img src={Practices} className='dashboard-icon' alt="" /> <div className="title-text">Practices</div> </div>
               </div>
 			  {data ? (
 				<div className='mr-4 '>
@@ -143,7 +102,7 @@ const handleChildId = (id) => {
               <div class="card-body d-flex justify-content-between">
 			  <div class="w-75s text-center">
              
-			 <div class="h3 dashboard-title"> <img src={ Department} className='dashboard-icon' alt="" /> Department </div>
+			 <div class="h3 dashboard-title"> <img src={ Department} className='dashboard-icon' alt="" /> <div className="title-text">Department</div> </div>
 		   </div>
               
                 
@@ -163,7 +122,7 @@ const handleChildId = (id) => {
               <div class="card-body d-flex justify-content-between">
 			  <div class="w-75s	 text-center">
              
-			 <div class="h3 dashboard-title"> <img src={Teams} className='dashboard-icon' alt="" /> Teams </div>
+			 <div class="h3 dashboard-title"> <img src={Teams} className='dashboard-icon' alt="" /> <div className="title-text">Teams</div> </div>
 		   </div>
               
                 
@@ -199,7 +158,7 @@ const handleChildId = (id) => {
               <div class="card-body d-flex justify-content-between">
 			  <div class="w-75s text-center">
              
-			 <div class="h3 dashboard-title"> <img src={ Tickets} className='dashboard-icon' alt="" /> Tickets </div>
+			 <div class="h3 dashboard-title"> <img src={ Tickets} className='dashboard-icon' alt="" /> <div className="title-text ">Tickets</div> </div>
 		   </div>
               
                 

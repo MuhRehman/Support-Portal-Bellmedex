@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @font-face {
   font-family: MulishBold;
   src: url(../src/assets/fonts/Mulish-Bold.ttf);
@@ -22,6 +26,7 @@
 	--border-color: #ddd;
 	--nav-size: 75px;
 }
+
 
 
 body {
@@ -103,8 +108,10 @@ body {
 }
 .card-wrapper-bot {
     /* width: 44px; */
+    display: flex;
     font-family: MulishBold;
     font-weight: 500;
+   
 }
 .box-img {
     width: 32px !important;
@@ -117,9 +124,20 @@ body {
     padding: 7px 12px;
     border-radius: 5px;
     font-weight: 500;
-
+    margin-top: 1%;
 }
-
+.card-wrapper-bot span {
+  display: inline-block;
+  margin-left: 12px;
+}
+.bg-white-custom {
+  background-color: #d5d6cf;
+}
+/* styles.css */
+.active-link {
+  color: red;
+  font-weight: bold;
+}
 
   tbody::-webkit-scrollbar {
     width: 5px;
@@ -510,8 +528,7 @@ color: rgb(125, 202, 238);
   content: '.';
   color: rgb(60, 179, 113);
   font-size: 100px;
-  line-height: 3px;
-
+  line-height: 3px; 
   margin: 0 auto;
 }
 .text-normal::before {
@@ -965,9 +982,14 @@ display: inline;
     content: "50%";
 }
 
+.dashboard-title .title-text {
+margin: 12px;
+}
+
 .dashboard-title {
   font-family: MulishExtraBold;
   font-weight: 500;
+  display: flex;
 }
 .Dashboard-heading {
   

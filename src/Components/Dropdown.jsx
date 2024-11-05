@@ -16,7 +16,7 @@ const Dropdown = ({ options, name, label, onChange }) => (
       name={name} onChange={onChange} id="frm-whatever">
        <option value="">Select  {label}</option>
        {options.map((option) => (
-         <option key={option.value} value={option.value}>
+         <option key={option.value} value={option.label}>
           {option.label}
         </option>
          ))}
@@ -34,8 +34,61 @@ const Dropdown = ({ options, name, label, onChange }) => (
     </div>
 
 );
+const responseData = {
+    perPage: 10,
+    pageNo: 1,
+    totalPages: 1,
+    totalCount: 4,
+    data: [
+      {
+        Id: 3,
+        PracticeName: "Tesing",
+        PracticeCode: 786,
+        IsActive: true,
+        CreatedAt: "2024-09-04T06:21:28.21",
+        CreatedBy: null,
+        UpdatedAt: "2024-10-07T19:30:53.597",
+        UpdatedBy: null,
+        SoftwareName: "software",
+      },
+      {
+        Id: 22,
+        PracticeName: "QA PRACTICE DBM",
+        PracticeCode: 321,
+        IsActive: true,
+        CreatedAt: "2024-10-07T23:21:55.81",
+        CreatedBy: "umer@32itms.com",
+        UpdatedAt: "2024-10-07T16:21:56.003",
+        UpdatedBy: null,
+        SoftwareName: null,
+      },
+      {
+        Id: 23,
+        PracticeName: "QA PRACTICE DBM2",
+        PracticeCode: 3211,
+        IsActive: true,
+        CreatedAt: "2024-10-07T23:26:55.133",
+        CreatedBy: "umer@32itms.com",
+        UpdatedAt: "2024-10-07T16:26:55.133",
+        UpdatedBy: null,
+        SoftwareName: null,
+      },
+      {
+        Id: 25,
+        PracticeName: "QA PRACTICE DBM",
+        PracticeCode: 321,
+        IsActive: true,
+        CreatedAt: "2024-10-08T19:29:50.12",
+        CreatedBy: "umer@32itms.com",
+        UpdatedAt: "2024-10-08T12:29:50.107",
+        UpdatedBy: null,
+        SoftwareName: null,
+      },
+    ],
+  };
 
-const App = () => {
+
+const DropItem = () => {
   const [sideBarOptions, setSideBarOptions] = useState(null); // State to store fetched data
   const [selectedOptions, setSelectedOptions] = useState({}); // State to store selected values
   const [data, setData] = useState(null); // State to store API response data
@@ -94,6 +147,49 @@ const App = () => {
 
   }, []);
 
+
+const [filters, setFilters] = useState({
+    practiceName: '',
+    team: '',
+    department: '',
+    assignee: '',
+    category: '',
+    status: '',
+    fromDate: '',
+    toDate: '',
+  });
+  const [filteredData, setFilteredData] = useState(responseData.data);
+
+  const handleFilterChange = (e) => {
+    console.log(e.target.value);
+    
+    const { name, value } = e.target;
+    setFilters((prev) => ({ ...prev, [name]: value }));
+    
+  };
+
+  const handleFilterClick = () => {
+    alert("Sss");
+    const newFilteredData = responseData.data.filter(item => {
+      const matchesPracticeName = item.PracticeName.toLowerCase().includes(filters.practiceName.toLowerCase());
+      const matchesTeam = true; // Replace with actual filter logic
+      const matchesDepartment = true; // Replace with actual filter logic
+      const matchesAssignee = true; // Replace with actual filter logic
+      const matchesCategory = true; // Replace with actual filter logic
+      const matchesStatus = filters.status ? (item.IsActive ? 'Active' : 'Inactive') === filters.status : true;
+      const matchesFromDate = filters.fromDate ? new Date(item.CreatedAt) >= new Date(filters.fromDate) : true;
+      const matchesToDate = filters.toDate ? new Date(item.CreatedAt) <= new Date(filters.toDate) : true;
+
+      return matchesPracticeName && matchesTeam && matchesDepartment && matchesAssignee && matchesCategory && matchesStatus && matchesFromDate && matchesToDate;
+    });
+    
+    
+    setFilteredData(newFilteredData);
+
+    console.log("dddddd "+ filters.practiceName);
+  };
+
+
   // Update selected values when an option is selected
   const handleChange = (e) => {
     setSelectedOptions({
@@ -109,18 +205,27 @@ const App = () => {
     <div className=' p-2 w-full flex flex-wrap'>
    
       <div class="h-16 border-1 mt-4   px-2 w-full md:w-1/2 lg:w-1/4 ">
-      <label class="font-sans text-sm  font-medium block mb-2" for="username">Practice Name</label>
+      <label class="font-sans text-sm  font-medium block mb-2" for="username">Ticket Number</label>
       <input type="number" class="relative border border-gray-300 outline-none rounded py-2 px-3 w-full 
       bg-white shadow-lg text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:shadow-outline" placeholder="Ticket Number" />
 
       </div>
-  
+      {sideBarOptions.practice && (
+        <Dropdown
+          options={sideBarOptions.practice.value}
+          name={sideBarOptions.practice.name}
+          label="Practice Name"
+          value={"filters practicessssssName"}
+          onChange={handleFilterChange}
+        />
+      )}
       {sideBarOptions.department && (
         <Dropdown
           options={sideBarOptions.department.value}
           name={sideBarOptions.department.name}
           label="Department"
-          onChange={handleChange}
+          value={filters.department}
+          onChange={handleFilterChange}
         />
       )}
 
@@ -130,23 +235,18 @@ const App = () => {
           options={sideBarOptions.team.value}
           name={sideBarOptions.team.name}
           label="Team"
-          onChange={handleChange}
+          value={filters.team}
+          onChange={handleFilterChange}
         />
       )}
-      {sideBarOptions.practice && (
-        <Dropdown
-          options={sideBarOptions.practice.value}
-          name={sideBarOptions.practice.name}
-          label="Practice"
-          onChange={handleChange}
-        />
-      )}
+     
       {sideBarOptions.assignee && (
         <Dropdown
           options={sideBarOptions.assignee.value}
           name={sideBarOptions.assignee.name}
           label="Assignee"
-          onChange={handleChange}
+          value={filters.assignee}
+          onChange={handleFilterChange}
         />
       )}
       {sideBarOptions.priority && (
@@ -154,7 +254,7 @@ const App = () => {
           options={sideBarOptions.priority.value}
           name={sideBarOptions.priority.name}
           label="Priority"
-          onChange={handleChange}
+          onChange={handleFilterChange}
         />
       )}
       {sideBarOptions.status && (
@@ -162,7 +262,8 @@ const App = () => {
           options={sideBarOptions.status.value}
           name={sideBarOptions.status.name}
           label="Status"
-          onChange={handleChange}
+          value={filters.status}
+          onChange={handleFilterChange}
         />
       )}
       {sideBarOptions.category && (
@@ -170,13 +271,18 @@ const App = () => {
           options={sideBarOptions.category.value}
           name={sideBarOptions.category.name}
           label="Category"
-          onChange={handleChange}
+          value={filters.category}
+          onChange={handleFilterChange}
         />
       )}
         
         <div class=" h-16 border-1 mt-4   px-2 w-full md:w-1/2 lg:w-1/4 ">
       <label class="font-sans text-sm block mb-2 font-medium">From Date</label>
-      <input type="date" class="relative border border-gray-300 outline-none rounded py-2 px-3 w-full 
+      <input type="date"
+      name="fromDate"
+      value={filters.fromDate}
+      onChange={handleFilterChange}
+      class="relative border border-gray-300 outline-none rounded py-2 px-3 w-full 
       bg-white shadow-lg text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:shadow-outline" placeholder="Ticket Number" />
 
       </div>
@@ -184,18 +290,23 @@ const App = () => {
       
       <div class=" h-16 border-1 mt-4   px-2 w-full md:w-1/2 lg:w-1/4 ">
       <label class="font-sans text-sm block mb-2 font-medium">To Date</label>
-      <input type="date" class="relative border border-gray-300 outline-none rounded py-2 px-3 w-full 
+      <input type="date"
+       
+       name="toDate"
+          value={filters.toDate}
+          onChange={handleFilterChange}
+      class="relative border border-gray-300 outline-none rounded py-2 px-3 w-full 
       bg-white shadow-lg text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:shadow-outline" placeholder="Ticket Number" />
 
       </div>
      
 
 
-      <div class="h-12 border-1 flex mt-12 mr-3 ml-auto justify-end items-center pb-1 px-1 w-full md:w-1/2 lg:w-1/4">
+      <div  class="h-12 border-1 flex mt-12 mr-3 ml-auto justify-end items-center pb-1 px-1 w-full md:w-1/2 lg:w-1/4">
       <button class="bg-white-500 hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded-full m-4">
         Clear
       </button>
-      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+      <button  onClick={handleFilterClick} class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
         Search
       </button>
         </div>
@@ -205,6 +316,73 @@ const App = () => {
 
       
     
+    <div className=" mx-auto p-4">
+   
+      <div className="overflow-x-auto">
+        <table className="min-w-full bg-white border border-gray-200 shadow-lg rounded-lg">
+        <thead class="text-xs text-gray-700 uppercase bg-blueCustom">
+              <tr>
+              	 					
+                  <th scope="col" class="px-6 py-3">
+                  Task No
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                  Practice
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                  Name
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                  Department
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                  Team
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                  Assignee
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                  Category
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                  Status
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                  Created Date	
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                  Action
+                  </th>
+              </tr>
+          </thead>
+        <div>{filteredData.length}</div>
+          <tbody>
+            {filteredData.length > 0 ? (
+              filteredData.map((item) => (
+                <tr key={item.Id} className="hover:bg-gray-100">
+                  <td className="px-4 py-2 border-b border-gray-200 text-sm text-gray-700">{item.Id}</td>
+                  <td className="px-4 py-2 border-b border-gray-200 text-sm text-gray-700">{item.PracticeName}</td>
+                  <td className="px-4 py-2 border-b border-gray-200 text-sm text-gray-700">{item.PracticeCode}</td>
+                  <td className="px-4 py-2 border-b border-gray-200 text-sm text-gray-700">{item.IsActive ? 'Yes' : 'No'}</td>
+                  <td className="px-4 py-2 border-b border-gray-200 text-sm text-gray-700">{new Date(item.CreatedAt).toLocaleString()}</td>
+                  <td className="px-4 py-2 border-b border-gray-200 text-sm text-gray-700">{item.CreatedBy || 'N/A'}</td>
+                  <td className="px-4 py-2 border-b border-gray-200 text-sm text-gray-700">{new Date(item.UpdatedAt).toLocaleString()}</td>
+                  <td className="px-4 py-2 border-b border-gray-200 text-sm text-gray-700">{item.UpdatedBy || 'N/A'}</td>
+                  <td className="px-4 py-2 border-b border-gray-200 text-sm text-gray-700">{item.SoftwareName || 'N/A'}</td>
+                  <td className="px-4 py-2 border-b border-gray-200 text-sm text-gray-700"><i class="fa fa-trash-o" style={{fontSize:"25px",color:"red"}}></i></td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="9" className="px-4 py-2 border-b border-gray-200 text-center text-gray-500">
+                  No data available
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
+    </div>
     <div className=" mx-auto p-4">
    
       <div className="overflow-x-auto">
@@ -276,4 +454,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default DropItem;

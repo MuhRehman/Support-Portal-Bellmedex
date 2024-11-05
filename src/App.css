@@ -116,7 +116,18 @@ body {
 .box-img {
     width: 32px !important;
 }
-
+.bg-blueCustom {
+  background-color: #1D65C2;
+  color: white;
+  font-family: MulishBold;
+  font-weight: 500;
+}
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-indent: 1px;
+  text-overflow: '';
+}
 .span-card {
     border: 0.5px solid rgb(226, 226, 226);
     /* width: 15%; */

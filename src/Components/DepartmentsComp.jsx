@@ -35,7 +35,7 @@
            </div>
           <table class="table table-hover no-border table-striped">
       {dataDepartments.data? (
-    <tbody className='tbody-wrapper' >
+    <tbody className='tbody-wrapper custom-tbody' >
         {dataDepartments.data.map((item, index) => (
         
           <tr key={index} >

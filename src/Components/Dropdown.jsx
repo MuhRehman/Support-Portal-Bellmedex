@@ -1,19 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
-// Dropdown component that takes in options, name, and label
+
 const Dropdown = ({ options, name, label, onChange }) => (
 
-//   <div>
-//     <label>{label}</label>
-//     <select name={name} onChange={onChange}>
-//       <option value="">Select 1 {label}</option>
-//       {options.map((option) => (
-//         <option key={option.value} value={option.value}>
-//           {option.label}
-//         </option>
-//       ))}
-//     </select>
-//   </div>
+
 
 
      <div class="h-16 border-1 mt-4   px-2 w-full md:w-1/2 lg:w-1/4">
@@ -30,10 +20,7 @@ const Dropdown = ({ options, name, label, onChange }) => (
           {option.label}
         </option>
          ))}
-          {/* <option value="">Select and Option&hellip;</option>
-          <option value="1">Item 1</option>
-          <option value="2">Item 2</option>
-          <option value="3">Item 3</option> */}
+    
         </select>
         <div class="pointer-events-none absolute right-0 top-0 bottom-0 flex items-center px-2 text-gray-700 border-l">
        
@@ -51,7 +38,10 @@ const Dropdown = ({ options, name, label, onChange }) => (
 const App = () => {
   const [sideBarOptions, setSideBarOptions] = useState(null); // State to store fetched data
   const [selectedOptions, setSelectedOptions] = useState({}); // State to store selected values
-
+  const [data, setData] = useState(null); // State to store API response data
+  const [loading, setLoading] = useState(true); // State to manage loading state
+  const [error, setError] = useState(null); // State to handle errors
+  
   // Fetch data from API when the component mounts
   useEffect(() => {
     const fetchData = async () => {
@@ -66,6 +56,42 @@ const App = () => {
     };
 
     fetchData();
+
+    const fetchsData = async () => {
+        setLoading(true);
+        try {
+          const response = await fetch('http://192.168.1.16:3060/api/Practice/GetPracticebyModel', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              perPage: 10,
+              pageNo: 1,
+              totalPages: 0,
+              totalCount: 0,
+              name: null,
+              createdTo: null,
+              createdFrom: null,
+              isActive: true,
+            }), // Sending specified payload
+          });
+  
+          if (!response.ok) {
+            throw new Error(`Error: ${response.statusText}`);
+          }
+  
+          const result = await response.json();
+          setData(result); // Store the response data in state
+        } catch (err) {
+          setError(err.message); // Handle errors
+        } finally {
+          setLoading(false); // Stop loading indicator
+        }
+      };
+  
+      fetchsData();
+
   }, []);
 
   // Update selected values when an option is selected
@@ -77,7 +103,7 @@ const App = () => {
   };
 
   // Check if data is still loading
-  if (!sideBarOptions) return <div>Loading...</div>;
+  if (!sideBarOptions) return <div></div>;
 
   return (
     <div className=' p-2 w-full flex flex-wrap'>
@@ -165,7 +191,7 @@ const App = () => {
      
 
 
-      <div class="h-12 border-1 flex mt-12 ml-auto justify-end items-center pb-1 px-1 w-full md:w-1/2 lg:w-1/4">
+      <div class="h-12 border-1 flex mt-12 mr-3 ml-auto justify-end items-center pb-1 px-1 w-full md:w-1/2 lg:w-1/4">
       <button class="bg-white-500 hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded-full m-4">
         Clear
       </button>
@@ -173,6 +199,79 @@ const App = () => {
         Search
       </button>
         </div>
+
+        
+
+
+      
+    
+    <div className=" mx-auto p-4">
+   
+      <div className="overflow-x-auto">
+        <table className="min-w-full bg-white border border-gray-200 shadow-lg rounded-lg">
+        <thead class="text-xs text-gray-700 uppercase bg-blueCustom">
+              <tr>
+              	 					
+                  <th scope="col" class="px-6 py-3">
+                  Task No
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                  Practice
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                  Name
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                  Department
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                  Team
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                  Assignee
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                  Category
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                  Status
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                  Created Date	
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                  Action
+                  </th>
+              </tr>
+          </thead>
+        
+          <tbody>
+            {data.data.length > 0 ? (
+              data.data.map((item) => (
+                <tr key={item.Id} className="hover:bg-gray-100">
+                  <td className="px-4 py-2 border-b border-gray-200 text-sm text-gray-700">{item.Id}</td>
+                  <td className="px-4 py-2 border-b border-gray-200 text-sm text-gray-700">{item.PracticeName}</td>
+                  <td className="px-4 py-2 border-b border-gray-200 text-sm text-gray-700">{item.PracticeCode}</td>
+                  <td className="px-4 py-2 border-b border-gray-200 text-sm text-gray-700">{item.IsActive ? 'Yes' : 'No'}</td>
+                  <td className="px-4 py-2 border-b border-gray-200 text-sm text-gray-700">{new Date(item.CreatedAt).toLocaleString()}</td>
+                  <td className="px-4 py-2 border-b border-gray-200 text-sm text-gray-700">{item.CreatedBy || 'N/A'}</td>
+                  <td className="px-4 py-2 border-b border-gray-200 text-sm text-gray-700">{new Date(item.UpdatedAt).toLocaleString()}</td>
+                  <td className="px-4 py-2 border-b border-gray-200 text-sm text-gray-700">{item.UpdatedBy || 'N/A'}</td>
+                  <td className="px-4 py-2 border-b border-gray-200 text-sm text-gray-700">{item.SoftwareName || 'N/A'}</td>
+                  <td className="px-4 py-2 border-b border-gray-200 text-sm text-gray-700"><i class="fa fa-trash-o" style={{fontSize:"25px",color:"red"}}></i></td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="9" className="px-4 py-2 border-b border-gray-200 text-center text-gray-500">
+                  No data available
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
+    </div>
     </div>
   );
 };

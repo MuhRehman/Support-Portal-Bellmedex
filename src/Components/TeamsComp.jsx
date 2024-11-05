@@ -43,7 +43,7 @@
         
 
         {dataTeams.data? (
-          <tbody>
+          <tbody className='custom-tbody'>
               {dataTeams.data.map((item, index) => (
                 <tr   onClick={sendIdToParent}   key={index}>
                   {/* <td> {item.TeamID}</td> */}

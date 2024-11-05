@@ -579,11 +579,17 @@ th, td {
   /* padding: 5px 14px !important; */
 
 }
-tbody {
+/* tbody {
+  display:block;
+  max-height:130px !important;
+  overflow-y:auto;
+} */
+.custom-tbody {
   display:block;
   max-height:130px !important;
   overflow-y:auto;
 }
+
 thead, tbody tr {
 display:table;
 width:100%;

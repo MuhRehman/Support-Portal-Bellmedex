@@ -36,7 +36,7 @@
            <div >
       <table class="table table-hover no-border table-striped">
       {dataCategory.data? (
-       <tbody className='tbody-wrapper' >
+       <tbody className='tbody-wrapper custom-tbody' >
         {dataCategory.data.map((item, index) => (
           <tr key={index}>
           {/* <td>{item.Id}</td> */}

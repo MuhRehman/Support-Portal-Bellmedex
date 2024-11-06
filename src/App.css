@@ -584,6 +584,29 @@ th, td {
   max-height:130px !important;
   overflow-y:auto;
 } */
+.bg-sideNavbg {
+  opacity: 1;
+  background-color: rgb(0 60 138 );
+}
+.bg-modelBox {
+  opacity: 1;
+  background-color: rgb(0 60 138 );
+}
+.bg-sidecontent {
+  background-color: whitesmoke;
+}
+.bg-buttonBg {
+  background-color: rgb(0 60 138 );
+
+}
+.icon-color {
+  color: white;
+}
+.bg-sideNavbg tr th {
+  color: white;
+  font-family: MulishBold;
+  letter-spacing: 1px;
+} 
 .custom-tbody {
   display:block;
   max-height:130px !important;

@@ -357,7 +357,7 @@ const DropItem = () => {
    
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white border border-gray-200 shadow-lg rounded-lg">
-        <thead class="text-xs text-gray-700 uppercase bg-blueCustom">
+        <thead class="text-xs text-gray-700 uppercase bg-sideNavbg ">
               <tr>
               	 					
                   <th scope="col" class="px-6 py-3">

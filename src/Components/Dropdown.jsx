@@ -148,7 +148,8 @@ const DropItem = () => {
   }, []);
 
 
-const [filters, setFilters] = useState({
+  const [filters, setFilters] = useState({
+    ticketNumber: '',
     practiceName: '',
     team: '',
     department: '',
@@ -158,36 +159,69 @@ const [filters, setFilters] = useState({
     fromDate: '',
     toDate: '',
   });
+
+
   const [filteredData, setFilteredData] = useState(responseData.data);
+  
 
   const handleFilterChange = (e) => {
     console.log(e.target.value);
     
     const { name, value } = e.target;
-    setFilters((prev) => ({ ...prev, [name]: value }));
+
+    // setFilters((prev) => ({ ...prev, [name]: value }));
+    
+    setFilters((prevFilters) => ({
+        ...prevFilters,
+        [name]: value,
+    }));
+
+    console.log("filters.practiceName =---" + filters.practiceName);
     
   };
 
   const handleFilterClick = () => {
-    alert("Sss");
     const newFilteredData = responseData.data.filter(item => {
-      const matchesPracticeName = item.PracticeName.toLowerCase().includes(filters.practiceName.toLowerCase());
-      const matchesTeam = true; // Replace with actual filter logic
-      const matchesDepartment = true; // Replace with actual filter logic
-      const matchesAssignee = true; // Replace with actual filter logic
-      const matchesCategory = true; // Replace with actual filter logic
-      const matchesStatus = filters.status ? (item.IsActive ? 'Active' : 'Inactive') === filters.status : true;
-      const matchesFromDate = filters.fromDate ? new Date(item.CreatedAt) >= new Date(filters.fromDate) : true;
-      const matchesToDate = filters.toDate ? new Date(item.CreatedAt) <= new Date(filters.toDate) : true;
+      const matchesPracticeName = filters.practiceName ? item.PracticeName.toLowerCase().includes(filters.practiceName.toLowerCase()) : false;
 
-      return matchesPracticeName && matchesTeam && matchesDepartment && matchesAssignee && matchesCategory && matchesStatus && matchesFromDate && matchesToDate;
+      console.log("First 1"+ filters.practiceName);
+      console.log("Second 2"+ item.PracticeName.toLowerCase());
+      
+      const matchesTeam = filters.team ? true : false; // Replace with actual filter logic for team
+      const matchesDepartment = filters.department ? true : false; // Replace with actual filter logic for department
+      const matchesAssignee = filters.assignee ? true : false; // Replace with actual filter logic for assignee
+      const matchesCategory = filters.category ? true : false; // Replace with actual filter logic for category
+      const matchesStatus = filters.status ? (item.IsActive ? 'Active' : 'Inactive') === filters.status : false;
+      const matchesFromDate = filters.fromDate ? new Date(item.CreatedAt) >= new Date(filters.fromDate) : false;
+      const matchesToDate = filters.toDate ? new Date(item.CreatedAt) <= new Date(filters.toDate) : false;
+  
+      // If any condition matches, include the item
+      return matchesPracticeName || matchesTeam || matchesDepartment || matchesAssignee || matchesCategory || matchesStatus || matchesFromDate || matchesToDate;
     });
-    
-    
+  
     setFilteredData(newFilteredData);
-
-    console.log("dddddd "+ filters.practiceName);
   };
+
+//   const handleFilterClick = () => {
+//     alert("Sss");
+//     const newFilteredData = responseData.data.filter(item => {
+//       const matchesPracticeName = item.PracticeName.toLowerCase().includes(filters.practiceName.toLowerCase());
+//       const matchesTeam = true; 
+//       const matchesDepartment = true; 
+//       const matchesAssignee = true; 
+//       const matchesCategory = true; 
+//       const matchesStatus = filters.status ? (item.IsActive ? 'Active' : 'Inactive') === filters.status : true;
+//       const matchesFromDate = filters.fromDate ? new Date(item.CreatedAt) >= new Date(filters.fromDate) : true;
+//       const matchesToDate = filters.toDate ? new Date(item.CreatedAt) <= new Date(filters.toDate) : true;
+
+//       return matchesPracticeName && matchesTeam && matchesDepartment && matchesAssignee && matchesCategory && matchesStatus && matchesFromDate && matchesToDate;
+//     });
+    
+    
+//     setFilteredData(newFilteredData);
+
+//     console.log("dddddd "+ filters.practiceName);
+//   };
 
 
   // Update selected values when an option is selected
@@ -203,21 +237,24 @@ const [filters, setFilters] = useState({
 
   return (
     <div className=' p-2 w-full flex flex-wrap'>
-   
+
       <div class="h-16 border-1 mt-4   px-2 w-full md:w-1/2 lg:w-1/4 ">
       <label class="font-sans text-sm  font-medium block mb-2" for="username">Ticket Number</label>
-      <input type="number" class="relative border border-gray-300 outline-none rounded py-2 px-3 w-full 
-      bg-white shadow-lg text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:shadow-outline" placeholder="Ticket Number" />
+      <input type="number" name='ticketNumber'   onChange={handleFilterChange} class="relative border border-gray-300 outline-none rounded py-2 px-3 w-full 
+      bg-white shadow-lg text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:shadow-outline"
+       placeholder="Ticket Number" />
 
       </div>
       {sideBarOptions.practice && (
+
         <Dropdown
           options={sideBarOptions.practice.value}
-          name={sideBarOptions.practice.name}
-          label="Practice Name"
-          value={"filters practicessssssName"}
+          name="practiceName"
+          label="Practice Name "
+          value={filters.department}
           onChange={handleFilterChange}
         />
+
       )}
       {sideBarOptions.department && (
         <Dropdown
@@ -355,7 +392,7 @@ const [filters, setFilters] = useState({
                   </th>
               </tr>
           </thead>
-        <div>{filteredData.length}</div>
+        {/* <div>{filteredData.length}</div> */}
           <tbody>
             {filteredData.length > 0 ? (
               filteredData.map((item) => (
@@ -383,73 +420,7 @@ const [filters, setFilters] = useState({
         </table>
       </div>
     </div>
-    <div className=" mx-auto p-4">
-   
-      <div className="overflow-x-auto">
-        <table className="min-w-full bg-white border border-gray-200 shadow-lg rounded-lg">
-        <thead class="text-xs text-gray-700 uppercase bg-blueCustom">
-              <tr>
-              	 					
-                  <th scope="col" class="px-6 py-3">
-                  Task No
-                  </th>
-                  <th scope="col" class="px-6 py-3">
-                  Practice
-                  </th>
-                  <th scope="col" class="px-6 py-3">
-                  Name
-                  </th>
-                  <th scope="col" class="px-6 py-3">
-                  Department
-                  </th>
-                  <th scope="col" class="px-6 py-3">
-                  Team
-                  </th>
-                  <th scope="col" class="px-6 py-3">
-                  Assignee
-                  </th>
-                  <th scope="col" class="px-6 py-3">
-                  Category
-                  </th>
-                  <th scope="col" class="px-6 py-3">
-                  Status
-                  </th>
-                  <th scope="col" class="px-6 py-3">
-                  Created Date	
-                  </th>
-                  <th scope="col" class="px-6 py-3">
-                  Action
-                  </th>
-              </tr>
-          </thead>
-        
-          <tbody>
-            {data.data.length > 0 ? (
-              data.data.map((item) => (
-                <tr key={item.Id} className="hover:bg-gray-100">
-                  <td className="px-4 py-2 border-b border-gray-200 text-sm text-gray-700">{item.Id}</td>
-                  <td className="px-4 py-2 border-b border-gray-200 text-sm text-gray-700">{item.PracticeName}</td>
-                  <td className="px-4 py-2 border-b border-gray-200 text-sm text-gray-700">{item.PracticeCode}</td>
-                  <td className="px-4 py-2 border-b border-gray-200 text-sm text-gray-700">{item.IsActive ? 'Yes' : 'No'}</td>
-                  <td className="px-4 py-2 border-b border-gray-200 text-sm text-gray-700">{new Date(item.CreatedAt).toLocaleString()}</td>
-                  <td className="px-4 py-2 border-b border-gray-200 text-sm text-gray-700">{item.CreatedBy || 'N/A'}</td>
-                  <td className="px-4 py-2 border-b border-gray-200 text-sm text-gray-700">{new Date(item.UpdatedAt).toLocaleString()}</td>
-                  <td className="px-4 py-2 border-b border-gray-200 text-sm text-gray-700">{item.UpdatedBy || 'N/A'}</td>
-                  <td className="px-4 py-2 border-b border-gray-200 text-sm text-gray-700">{item.SoftwareName || 'N/A'}</td>
-                  <td className="px-4 py-2 border-b border-gray-200 text-sm text-gray-700"><i class="fa fa-trash-o" style={{fontSize:"25px",color:"red"}}></i></td>
-                </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan="9" className="px-4 py-2 border-b border-gray-200 text-center text-gray-500">
-                  No data available
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
-      </div>
-    </div>
+
     </div>
   );
 };

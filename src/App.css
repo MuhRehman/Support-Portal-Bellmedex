@@ -588,6 +588,9 @@ th, td {
   opacity: 1;
   background-color: rgb(0 60 138 );
 }
+.select-custom-model {
+  background-color: rgb(0 60 138 ) !important;
+}
 .bg-modelBox {
   opacity: 1;
   background-color: rgb(0 60 138 );
@@ -612,7 +615,23 @@ th, td {
   max-height:130px !important;
   overflow-y:auto;
 }
+.file-wrapper {
+  position: relative;
+}
 
+.file-wrapper input[type="file"] {
+  /* visibility: hidden; */
+}
+.filefield {
+  /* visibility: hidden; */
+  /* position: absolute; */
+ z-index: 999;
+
+  border: 1px solid #ccc;
+  /* display: inline-block; */
+  padding: 6px 12px;
+  cursor: pointer;
+}
 thead, tbody tr {
 display:table;
 width:100%;

@@ -11,12 +11,12 @@ const Dropdown = ({ options, name, label, onChange }) => (
       <label class="font-sans text-sm mb-1 font-medium block mb-2 ">{label}</label>
       <div class="relative border border-gray-300 text-gray-800 bg-white shadow-lg">
         {/* <label for="frm-whatever" class="sr-only">My field</label> */}
-        <select class="relative select-custom outline-none rounded py-2 px-3 w-full 
+        <select class="relative  outline-none rounded py-2 px-3 w-full 
       bg-white shadow text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:shadow-outline"
       name={name} onChange={onChange} id="frm-whatever">
-       <option value="">Select  {label}</option>
+       <option value=""> Select  {label}</option>
        {options.map((option) => (
-         <option key={option.value} value={option.label}>
+         <option key={option.value} className='' value={option.value}>
           {option.label}
         </option>
          ))}
@@ -34,58 +34,8 @@ const Dropdown = ({ options, name, label, onChange }) => (
     </div>
 
 );
-const responseData = {
-    perPage: 10,
-    pageNo: 1,
-    totalPages: 1,
-    totalCount: 4,
-    data: [
-      {
-        Id: 3,
-        PracticeName: "Tesing",
-        PracticeCode: 786,
-        IsActive: true,
-        CreatedAt: "2024-09-04T06:21:28.21",
-        CreatedBy: null,
-        UpdatedAt: "2024-10-07T19:30:53.597",
-        UpdatedBy: null,
-        SoftwareName: "software",
-      },
-      {
-        Id: 22,
-        PracticeName: "QA PRACTICE DBM",
-        PracticeCode: 321,
-        IsActive: true,
-        CreatedAt: "2024-10-07T23:21:55.81",
-        CreatedBy: "umer@32itms.com",
-        UpdatedAt: "2024-10-07T16:21:56.003",
-        UpdatedBy: null,
-        SoftwareName: null,
-      },
-      {
-        Id: 23,
-        PracticeName: "QA PRACTICE DBM2",
-        PracticeCode: 3211,
-        IsActive: true,
-        CreatedAt: "2024-10-07T23:26:55.133",
-        CreatedBy: "umer@32itms.com",
-        UpdatedAt: "2024-10-07T16:26:55.133",
-        UpdatedBy: null,
-        SoftwareName: null,
-      },
-      {
-        Id: 25,
-        PracticeName: "QA PRACTICE DBM",
-        PracticeCode: 321,
-        IsActive: true,
-        CreatedAt: "2024-10-08T19:29:50.12",
-        CreatedBy: "umer@32itms.com",
-        UpdatedAt: "2024-10-08T12:29:50.107",
-        UpdatedBy: null,
-        SoftwareName: null,
-      },
-    ],
-  };
+
+
 
 
 const DropItem = () => {
@@ -101,41 +51,59 @@ const DropItem = () => {
       try {
         const response = await fetch('http://192.168.1.16:3060/api/Department/GetDepartmentDropDown'); // Replace with your API URL
         const data = await response.json();
-        setSideBarOptions(data.sideBarOptions); // Update state with fetched data
-
+        setSideBarOptions(data.sideBarOptions);  // Update state with fetched data
+        // debugger
+        console.log(" Testing " + data.sideBarOptions.data);
+           
       } catch (error) {
         console.error('Error fetching sidebar options:', error);
       }
-    };
 
-    fetchData();
 
-    const fetchsData = async () => {
+      const fetchsData = async () => {
         setLoading(true);
         try {
-          const response = await fetch('http://192.168.1.16:3060/api/Practice/GetPracticebyModel', {
+          const response = await fetch('http://192.168.1.16:3060/api/InternalTask/GetTasksbyModel', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-              perPage: 10,
-              pageNo: 1,
-              totalPages: 0,
-              totalCount: 0,
-              name: null,
-              createdTo: null,
-              createdFrom: null,
-              isActive: true,
-            }), // Sending specified payload
+              
+                "perPage": 100,
+                "pageNo": 1,
+                "totalPages": 0,
+                "totalCount": 0,
+                "departmentId": "",
+                "practiceId": "",
+                    "createdTo": "",
+                    "createdFrom": "",
+                    "teamId": "",
+                    "categoryId": "",
+                    "name": "",
+                    "assigneeId": "",
+                    "priorityId": "",
+                    "statusId": "",
+                "id": "",
+                "isActive": true
+              
+          }), 
+      
+  
           });
   
           if (!response.ok) {
             throw new Error(`Error: ${response.statusText}`);
           }
+        
   
-          const result = await response.json();
-          setData(result); // Store the response data in state
+          const result = await response.json(); // Parse JSON response
+          setData(result); // Set data in state
+          console.log("Search Fetched data:", result);
+          // const result = await response.json();
+          // setData(result); // Store the response data in state
+          // console.log("result 1"+ response);
+          
         } catch (err) {
           setError(err.message); // Handle errors
         } finally {
@@ -144,6 +112,51 @@ const DropItem = () => {
       };
   
       fetchsData();
+    };
+
+    fetchData();
+
+    // const fetchsData = async () => {
+    //     setLoading(true);
+    //     try {
+    //       const response = await fetch('http://192.168.1.16:3060/api/Practice/GetPracticebyModel', {
+    //         method: 'POST',
+    //         headers: {
+    //           'Content-Type': 'application/json',
+    //         },
+    //         body: JSON.stringify({
+    //           perPage: 10,
+    //           pageNo: 1,
+    //           totalPages: 0,
+    //           totalCount: 0,
+    //           name: null,
+    //           createdTo: null,
+    //           createdFrom: null,
+    //           isActive: true,
+    //         }), // Sending specified payload
+    //       });
+  
+    //       if (!response.ok) {
+    //         throw new Error(`Error: ${response.statusText}`);
+    //       }
+  
+
+    //       const result = await response.json(); // Parse JSON response
+    //       setData(result); // Set data in state
+    //       console.log("Fetched data:", result);
+    //       // const result = await response.json();
+
+    //       // setData(result); // Store the response data in state
+    //       // console.log("result 1"+ response);
+          
+    //     } catch (err) {
+    //       setError(err.message); // Handle errors
+    //     } finally {
+    //       setLoading(false); // Stop loading indicator
+    //     }
+    //   };
+  
+    //   fetchsData();
 
   }, []);
 
@@ -152,6 +165,7 @@ const DropItem = () => {
     ticketNumber: '',
     practiceName: '',
     team: '',
+    Priority:'',
     department: '',
     assignee: '',
     category: '',
@@ -160,8 +174,9 @@ const DropItem = () => {
     toDate: '',
   });
 
-
-  const [filteredData, setFilteredData] = useState(responseData.data);
+  //   console.log("dddd"+ data.data);
+  
+  const [filteredData, setFilteredData] = useState(data);
   
 
   const handleFilterChange = (e) => {
@@ -176,12 +191,100 @@ const DropItem = () => {
         [name]: value,
     }));
 
-    console.log("filters.practiceName =---" + filters.practiceName);
+    console.log("filters.practiceName " + filters.practiceName);
     
   };
 
+  const handleSearchClick = () => {
+
+    const fetchsData = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch('http://192.168.1.16:3060/api/InternalTask/GetTasksbyModel', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            
+              "perPage": 100,
+              "pageNo": 1,
+              "totalPages": 0,
+              "totalCount": 0,
+              "departmentId": filters.department,
+              "practiceId": filters.practiceName,
+                  "createdTo": filters.toDate,
+                  "createdFrom": filters.fromDate,
+                  "teamId": filters.team,
+                  "categoryId": filters.category,
+                  "name": "",
+                  "assigneeId": filters.assignee,
+                  "priorityId": filters.Priority,
+                  "statusId": filters.status,
+              "id": "",
+              "isActive": true
+            
+        }), 
+        //   body: JSON.stringify({
+        //     "perPage": 100,
+        //     "pageNo": 1,
+        //     "totalPages": 0,
+        //     "totalCount": 0,
+        //     "departmentId": filters.department,
+        //     "practiceId": filters.practiceName,
+        //     "createdTo": filters.toDate,
+        //     "createdFrom": filters.fromDate,
+        //     "teamId": filters.team,
+        //     "categoryId": filters.category,
+        //     "name": filters.practiceName,
+        //     "assigneeId": filters.assignee,
+        //     "priorityId": filters.Priority,
+        //     "statusId": filters.status,
+        //     "id": null,
+        //     "isActive": null
+        // }), 
+          // body: JSON.stringify({
+          //   perPage: 10,
+          //   pageNo: 1,
+          //   totalPages: 0,
+          //   totalCount: 0,
+          //   name: filters.practiceName,
+          //   createdTo: filters.toDate,
+          //   createdFrom: filters.fromDate,
+          //   isActive: true,
+          // }), 
+
+
+        });
+
+        if (!response.ok) {
+          throw new Error(`Error: ${response.statusText}`);
+        }
+      
+
+        const result = await response.json(); // Parse JSON response
+        setData(result); // Set data in state
+        console.log("Search Fetched data:", result);
+        // const result = await response.json();
+        // setData(result); // Store the response data in state
+        // console.log("result 1"+ response);
+        
+      } catch (err) {
+        setError(err.message); // Handle errors
+      } finally {
+        setLoading(false); // Stop loading indicator
+      }
+    };
+
+    fetchsData();
+  }
+
   const handleFilterClick = () => {
-    const newFilteredData = responseData.data.filter(item => {
+
+    console.log("filter data"+filteredData);
+    console.log("data" + data);
+    
+      const newFilteredData = data?.data.filter(item => {
       const matchesPracticeName = filters.practiceName ? item.PracticeName.toLowerCase().includes(filters.practiceName.toLowerCase()) : false;
 
       console.log("First 1"+ filters.practiceName);
@@ -213,7 +316,6 @@ const DropItem = () => {
 //       const matchesStatus = filters.status ? (item.IsActive ? 'Active' : 'Inactive') === filters.status : true;
 //       const matchesFromDate = filters.fromDate ? new Date(item.CreatedAt) >= new Date(filters.fromDate) : true;
 //       const matchesToDate = filters.toDate ? new Date(item.CreatedAt) <= new Date(filters.toDate) : true;
-
 //       return matchesPracticeName && matchesTeam && matchesDepartment && matchesAssignee && matchesCategory && matchesStatus && matchesFromDate && matchesToDate;
 //     });
     
@@ -245,73 +347,74 @@ const DropItem = () => {
        placeholder="Ticket Number" />
 
       </div>
-      {sideBarOptions.practice && (
+          {sideBarOptions.practice && (
 
-        <Dropdown
-          options={sideBarOptions.practice.value}
-          name="practiceName"
-          label="Practice Name "
-          value={filters.department}
-          onChange={handleFilterChange}
-        />
+            <Dropdown
+              options={sideBarOptions.practice.value}
+              name="practiceName"
+              label="Practice Name "
+              value={filters.department}
+              onChange={handleFilterChange}
+            />
 
-      )}
-      {sideBarOptions.department && (
-        <Dropdown
-          options={sideBarOptions.department.value}
-          name={sideBarOptions.department.name}
-          label="Department"
-          value={filters.department}
-          onChange={handleFilterChange}
-        />
-      )}
+          )}
+          
+          {sideBarOptions.department && (
+            <Dropdown
+              options={sideBarOptions.department.value}
+              name={sideBarOptions.department.name}
+              label="Department"
+              value={filters.department}
+              onChange={handleFilterChange}
+            />
+          )}
 
 
-      {sideBarOptions.team && (
-        <Dropdown
-          options={sideBarOptions.team.value}
-          name={sideBarOptions.team.name}
-          label="Team"
-          value={filters.team}
-          onChange={handleFilterChange}
-        />
-      )}
-     
-      {sideBarOptions.assignee && (
-        <Dropdown
-          options={sideBarOptions.assignee.value}
-          name={sideBarOptions.assignee.name}
-          label="Assignee"
-          value={filters.assignee}
-          onChange={handleFilterChange}
-        />
-      )}
-      {sideBarOptions.priority && (
-        <Dropdown
-          options={sideBarOptions.priority.value}
-          name={sideBarOptions.priority.name}
-          label="Priority"
-          onChange={handleFilterChange}
-        />
-      )}
-      {sideBarOptions.status && (
-        <Dropdown
-          options={sideBarOptions.status.value}
-          name={sideBarOptions.status.name}
-          label="Status"
-          value={filters.status}
-          onChange={handleFilterChange}
-        />
-      )}
-      {sideBarOptions.category && (
-        <Dropdown
-          options={sideBarOptions.category.value}
-          name={sideBarOptions.category.name}
-          label="Category"
-          value={filters.category}
-          onChange={handleFilterChange}
-        />
-      )}
+          {sideBarOptions.team && (
+            <Dropdown
+              options={sideBarOptions.team.value}
+              name={sideBarOptions.team.name}
+              label="Team"
+              value={filters.team}
+              onChange={handleFilterChange}
+            />
+          )}
+        
+          {sideBarOptions.assignee && (
+            <Dropdown
+              options={sideBarOptions.assignee.value}
+              name={sideBarOptions.assignee.name}
+              label="Assignee"
+              value={filters.assignee}
+              onChange={handleFilterChange}
+            />
+          )}
+          {sideBarOptions.priority && (
+            <Dropdown
+              options={sideBarOptions.priority.value}
+              name={sideBarOptions.priority.name}
+              label="Priority"
+              onChange={handleFilterChange}
+            />
+          )}
+          {sideBarOptions.status && (
+            <Dropdown
+              options={sideBarOptions.status.value}
+              name={sideBarOptions.status.name}
+              label="Status"
+              value={filters.status}
+              onChange={handleFilterChange}
+            />
+          )}
+          {sideBarOptions.category && (
+            <Dropdown
+              options={sideBarOptions.category.value}
+              name={sideBarOptions.category.name}
+              label="Category"
+              value={filters.category}
+              onChange={handleFilterChange}
+            />
+          )}
         
         <div class=" h-16 border-1 mt-4   px-2 w-full md:w-1/2 lg:w-1/4 ">
       <label class="font-sans text-sm block mb-2 font-medium">From Date</label>
@@ -343,7 +446,7 @@ const DropItem = () => {
       <button class="bg-white-500 hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded-full m-4">
         Clear
       </button>
-      <button  onClick={handleFilterClick} class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+      <button  onClick={handleSearchClick} class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
         Search
       </button>
         </div>
@@ -357,7 +460,7 @@ const DropItem = () => {
    
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white border border-gray-200 shadow-lg rounded-lg">
-        <thead class="text-xs text-gray-700 uppercase bg-sideNavbg ">
+        <thead class="text-xs text-gray-700 uppercase bg-sideNavbg">
               <tr>
               	 					
                   <th scope="col" class="px-6 py-3">
@@ -394,18 +497,18 @@ const DropItem = () => {
           </thead>
         {/* <div>{filteredData.length}</div> */}
           <tbody>
-            {filteredData.length > 0 ? (
-              filteredData.map((item) => (
+            {data?.data.length > 0 ? (
+              data?.data.map((item) => (
                 <tr key={item.Id} className="hover:bg-gray-100">
-                  <td className="px-4 py-2 border-b border-gray-200 text-sm text-gray-700">{item.Id}</td>
-                  <td className="px-4 py-2 border-b border-gray-200 text-sm text-gray-700">{item.PracticeName}</td>
-                  <td className="px-4 py-2 border-b border-gray-200 text-sm text-gray-700">{item.PracticeCode}</td>
-                  <td className="px-4 py-2 border-b border-gray-200 text-sm text-gray-700">{item.IsActive ? 'Yes' : 'No'}</td>
-                  <td className="px-4 py-2 border-b border-gray-200 text-sm text-gray-700">{new Date(item.CreatedAt).toLocaleString()}</td>
-                  <td className="px-4 py-2 border-b border-gray-200 text-sm text-gray-700">{item.CreatedBy || 'N/A'}</td>
-                  <td className="px-4 py-2 border-b border-gray-200 text-sm text-gray-700">{new Date(item.UpdatedAt).toLocaleString()}</td>
-                  <td className="px-4 py-2 border-b border-gray-200 text-sm text-gray-700">{item.UpdatedBy || 'N/A'}</td>
-                  <td className="px-4 py-2 border-b border-gray-200 text-sm text-gray-700">{item.SoftwareName || 'N/A'}</td>
+                  <td className="px-4 py-2 border-b border-gray-200 text-sm text-gray-700">{item.taskno}</td>
+                  <td className="px-4 py-2 border-b border-gray-200 text-sm text-gray-700">{item.practicename}</td>
+                  <td className="px-4 py-2 border-b border-gray-200 text-sm text-gray-700">{item.CategoryName}</td>
+                  <td className="px-4 py-2 border-b border-gray-200 text-sm text-gray-700">{item.Department}</td>
+                  <td className="px-4 py-2 border-b border-gray-200 text-sm text-gray-700">{item.teamname}</td>
+                  <td className="px-4 py-2 border-b border-gray-200 text-sm text-gray-700">{item.Assignee}</td>
+                  <td className="px-4 py-2 border-b border-gray-200 text-sm text-gray-700">{item.CategoryName}</td>
+                  <td className="px-4 py-2 border-b border-gray-200 text-sm text-gray-700">{item.Status}</td>
+                  <td className="px-4 py-2 border-b border-gray-200 text-sm text-gray-700">{item.CreatedDate}</td>
                   <td className="px-4 py-2 border-b border-gray-200 text-sm text-gray-700"><i class="fa fa-trash-o" style={{fontSize:"25px",color:"red"}}></i></td>
                 </tr>
               ))
